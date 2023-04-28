@@ -1,0 +1,183 @@
+1	LOC128237223	LOC128237225	transcriptional enhancer factor TEF-1-like	uncharacterized LOC128237225
+2	LOC128208144	LOC128207795	sushi%2C von Willebrand factor type A%2C EGF and pentraxin domain-containing protein 1-like	serine/threonine-protein phosphatase 2A 56 kDa regulatory subunit gamma isoform-like
+3	LOC128214072	LOC128213086	muscle%2C skeletal receptor tyrosine protein kinase-like	PAT complex subunit Asterix-like
+4	LOC128206410	LOC128231952	forkhead box protein K2-like	U1 small nuclear ribonucleoprotein C-like
+5	LOC128234681	LOC128231369	ceramide synthase 4-like	uncharacterized LOC128231369
+6	LOC128231922	LOC128234178	glypican-5-like	platelet glycoprotein Ib alpha chain-like
+7	LOC128223883	LOC128237368	choline transporter-like protein 2	homogentisate 1%2C2-dioxygenase-like
+8	LOC128209128	LOC128220297	myosin heavy chain%2C non-muscle-like	carboxypeptidase E-like
+9	LOC128240559	LOC128205261	uncharacterized LOC128240559	kelch-like protein 38
+10	LOC128214159	LOC128214525	transcription elongation factor A protein 1-like	eukaryotic translation initiation factor 3 subunit I-like
+11	LOC128228965	LOC128233959	chitin synthase chs-2-like	N-lysine methyltransferase KMT5A-A-like
+12	LOC128224768	LOC128214138	disabled homolog 2-interacting protein-like	receptor-type tyrosine-protein phosphatase delta-like
+13	LOC128217369	LOC128211475	uncharacterized LOC128217369	condensin complex subunit 2-like
+14	LOC128231134	LOC128231321	mediator of RNA polymerase II transcription subunit 13-like	uncharacterized LOC128231321
+15	LOC128213857	LOC128230296	ATP-dependent RNA helicase DDX4-like	COMM domain-containing protein 9-like
+16	LOC128211864	LOC128237368	uncharacterized LOC128211864	homogentisate 1%2C2-dioxygenase-like
+17	LOC128211431	LOC128212434	uncharacterized LOC128211431	uncharacterized LOC128212434
+18	LOC128222649	LOC128234046	uncharacterized LOC128222649	uncharacterized LOC128234046
+19	LOC128237359	LOC128208997	mucin-2-like	uncharacterized LOC128208997
+20	LOC128207280	LOC128207282	phosphofurin acidic cluster sorting protein 2-like	TATA box-binding protein-associated factor RNA polymerase I subunit A-like
+21	LOC128219912	LOC128217508	UDP-glucose:glycoprotein glucosyltransferase 1-like	uncharacterized LOC128217508
+22	LOC128217117	LOC128206551	neuroglian-like	epidermal retinol dehydrogenase 2-like
+23	LOC128231392	LOC128232405	uncharacterized LOC128231392	signal peptide%2C CUB and EGF-like domain-containing protein 1
+24	LOC128238333	LOC128231922	sushi%2C von Willebrand factor type A%2C EGF and pentraxin domain-containing protein 1-like	glypican-5-like
+25	LOC128219276	LOC128240054	ubiquitin carboxyl-terminal hydrolase 42-like	zinc finger protein 234-like
+26	LOC128209542	LOC128209506	uncharacterized LOC128209542	queuosine salvage protein-like
+27	LOC128221076	LOC128239972	intermembrane lipid transfer protein VPS13A-like	uncharacterized LOC128239972
+28	LOC128211535	LOC128210219	adhesion G protein-coupled receptor A3-like	endothelin-converting enzyme 1-like
+29	LOC128218057	LOC128216503	dynamin-1-like protein	proprotein convertase subtilisin/kexin type 5-like
+30	LOC128206450	LOC128206134	60S ribosomal export protein NMD3-like	methenyltetrahydrofolate synthase domain-containing protein-like
+31	LOC128230537	LOC128232835	uncharacterized LOC128230537	serine/arginine-rich splicing factor 3-like
+32	LOC128240877	LOC128228033	sodium bicarbonate cotransporter 3-like	Bardet-Biedl syndrome 7 protein homolog
+33	LOC128218299	LOC128218173	complex I assembly factor ACAD9%2C mitochondrial-like	guanine nucleotide-binding protein-like 3 homolog
+34	LOC128202890	LOC128203485	5'-3' exoribonuclease 1-like	coadhesin-like
+35	LOC128246856	LOC128246719	uncharacterized LOC128246856	protein kinase C iota type-like
+36	LOC128203244	LOC128238333	sex peptide receptor-related protein 2-like	sushi%2C von Willebrand factor type A%2C EGF and pentraxin domain-containing protein 1-like
+37	LOC128214831	LOC128214162	probable dimethyladenosine transferase	zinc finger Ran-binding domain-containing protein 2-like
+38	LOC128231216	LOC128211956	liprin-beta-1-like	signal recognition particle subunit SRP72-like
+39	LOC128224408	LOC128222998	zinc finger MYND domain-containing protein 19-like	interferon-induced protein 44-like
+40	LOC128242135	LOC128243848	tRNA methyltransferase 10 homolog A-like	programmed cell death protein 6-like
+41	LOC128222649	LOC128229282	uncharacterized LOC128222649	periodic tryptophan protein 2 homolog
+42	LOC128204083	LOC128213552	uncharacterized LOC128204083	dual specificity protein phosphatase CDC14A-like
+43	LOC128221849	LOC128221076	ras-related protein Rab-8A	intermembrane lipid transfer protein VPS13A-like
+44	LOC128210594	LOC128212358	solute carrier family 23 member 2-like	nucleolysin TIAR-like
+45	LOC128218187	LOC128218201	uncharacterized LOC128218187	protein C12orf4 homolog
+46	LOC128231662	LOC128232826	palmitoyltransferase ZDHHC8B-like	complement C1q tumor necrosis factor-related protein 3-like
+47	LOC128229970	LOC128231638	prohibitin 1-like	nicotinate-nucleotide pyrophosphorylase [carboxylating]-like
+48	LOC128207867	LOC128207735	striatin-3-like	protein numb-like
+49	LOC128223860	LOC128223882	glycosyltransferase 25 family member-like	uncharacterized LOC128223882
+50	LOC128209736	LOC128207715	transcriptional adapter 2-beta-like	hypoxia-inducible factor 1-alpha-like
+51	LOC128216598	LOC128218280	reelin-like	emerin homolog 1-like
+52	LOC128246797	LOC128210594	polyamine-transporting ATPase 13A3-like	solute carrier family 23 member 2-like
+53	LOC128205610	LOC128205834	uncharacterized LOC128205610	trafficking protein particle complex subunit 9-like
+54	LOC128236012	LOC128231735	uncharacterized LOC128236012	alpha-1%2C6-mannosyl-glycoprotein 4-beta-N-acetylglucosaminyltransferase-like
+55	LOC128211587	LOC128212546	exocyst complex component 4-like	uncharacterized LOC128212546
+56	LOC128231216	LOC128211956	liprin-beta-1-like	signal recognition particle subunit SRP72-like
+57	LOC128205552	LOC128232903	uncharacterized LOC128205552	uncharacterized LOC128232903
+58	LOC128217740	LOC128217522	leukotriene A-4 hydrolase-like	ubiquitin-like modifier-activating enzyme 1
+59	LOC128240711	LOC128214008	elongation factor 1-beta-like	uncharacterized LOC128214008
+60	LOC128235673	LOC128227628	ATP synthase subunit beta%2C mitochondrial-like	deoxyribonuclease-1-like
+61	LOC128242780	LOC128242316	bromodomain-containing protein 7-like	tetratricopeptide repeat protein 5-like
+62	LOC128238309	LOC128237368	mitogen-activated protein kinase kinase kinase 15-like	homogentisate 1%2C2-dioxygenase-like
+63	LOC128215295	LOC128214564	uncharacterized LOC128215295	adhesion G protein-coupled receptor L3-like
+64	LOC128210594	LOC128212358	solute carrier family 23 member 2-like	nucleolysin TIAR-like
+65	LOC128239247	LOC128236971	uncharacterized LOC128239247	uncharacterized LOC128236971
+66	LOC128224324	LOC128232746	tRNA N6-adenosine threonylcarbamoyltransferase%2C mitochondrial-like	integrator complex subunit 12-like
+67	LOC128246797	LOC128210594	polyamine-transporting ATPase 13A3-like	solute carrier family 23 member 2-like
+68	LOC128217192	LOC128217745	IQ motif and SEC7 domain-containing protein 2-like	soma ferritin-like
+69	LOC128213625	LOC128213985	potassium voltage-gated channel protein Shab-like	neurogenic locus notch homolog protein 1-like
+70	LOC128239371	LOC128236833	actin-related protein 6-like	3-oxoacyl-[acyl-carrier-protein] reductase FabG-like
+71	LOC128213529	LOC128213923	YTH domain-containing protein 1-like	tyrosine-protein kinase SRK2-like
+72	LOC128243076	LOC128244018	zinc finger protein ZFPM1-like	uncharacterized LOC128244018
+73	LOC128245595	LOC128243052	cadherin-99C-like	oncoprotein-induced transcript 3 protein-like
+74	LOC128219852	LOC128219888	transcription factor Dp-1-like	uncharacterized LOC128219888
+75	LOC128241509	LOC128226256	peroxisome proliferator-activated receptor delta-like	putative ammonium transporter 3
+76	LOC128212511	LOC128211897	uncharacterized LOC128212511	serine/threonine-protein phosphatase 6 regulatory ankyrin repeat subunit B-like
+77	LOC128204064	LOC128210198	androgen-induced gene 1 protein-like	nuclear hormone receptor HR96-like
+78	LOC128209738	LOC128238212	uncharacterized LOC128209738	sperm-associated antigen 17-like
+79	LOC128232580	LOC128232224	S-adenosyl-L-methionine-dependent tRNA 4-demethylwyosine synthase TYW1-like	mitotic-spindle organizing protein 1-like
+80	LOC128237223	LOC128237291	transcriptional enhancer factor TEF-1-like	plexin-B1-like
+81	LOC128208799	LOC128207167	son of sevenless homolog 2-like	solute carrier family 46 member 3-like
+82	LOC128234208	LOC128234603	POU domain%2C class 2%2C transcription factor 3L-like	eukaryotic translation initiation factor 4B-like
+83	LOC128227945	LOC128228559	lamin-B1-like	kxDL motif-containing protein 1-like
+84	LOC128217564	LOC128217689	uncharacterized LOC128217564	dipeptidyl peptidase 1-like
+85	LOC128231743	LOC128231372	synaptic vesicle 2-related protein-like	probable 28S ribosomal protein S23%2C mitochondrial
+86	LOC128219800	LOC128230230	myosin-9-like	twinkle mtDNA helicase-like
+87	LOC128209189	LOC128223396	prolyl 4-hydroxylase subunit alpha-1-like	uncharacterized LOC128223396
+88	LOC128232121	LOC128232300	collagen alpha-1(I) chain-like	T-box transcription factor TBX1-like
+89	LOC128208212	LOC128227855	uncharacterized LOC128208212	cartilage matrix protein-like
+90	LOC128217897	LOC128220622	histone-lysine N-methyltransferase SUV39H2-like	50S ribosomal protein L27-like
+91	LOC128207715	LOC128208971	hypoxia-inducible factor 1-alpha-like	E3 ubiquitin-protein ligase HECTD1-like
+92	LOC128208209	LOC128229660	girdin-like	T-box transcription factor TBX6-like
+93	LOC128203718	LOC128203354	solute carrier family 2%2C facilitated glucose transporter member 1-like	guanylate-binding protein 2-like
+94	LOC128237223	LOC128237291	transcriptional enhancer factor TEF-1-like	plexin-B1-like
+95	LOC128246462	LOC128246797	alpha-tocopherol transfer protein-like	polyamine-transporting ATPase 13A3-like
+96	LOC128228088	LOC128208212	unconventional myosin-IXAa-like	uncharacterized LOC128208212
+97	LOC128222104	LOC128222543	uncharacterized LOC128222104	uncharacterized LOC128222543
+98	LOC128234043	LOC128235100	protein mono-ADP-ribosyltransferase PARP14-like	peptidylglycine alpha-hydroxylating monooxygenase-like
+99	LOC128231567	LOC128231190	DNA damage-regulated autophagy modulator protein 2-like	nuclear receptor subfamily 1 group D member 1-like
+100	LOC128214476	LOC128234352	uncharacterized LOC128214476	zinc finger and BTB domain-containing protein 11-like
+101	LOC128243492	LOC128209935	zinc finger protein 93-like	uncharacterized LOC128209935
+102	LOC128237216	LOC128238542	uncharacterized LOC128237216	myophilin-like
+103	LOC128225143	LOC128228393	coiled-coil domain-containing protein 40-like	E3 ubiquitin-protein ligase RNF14-like
+104	LOC128203718	LOC128203354	solute carrier family 2%2C facilitated glucose transporter member 1-like	guanylate-binding protein 2-like
+105	LOC128210416	LOC128211069	carbohydrate sulfotransferase 15-like	uncharacterized LOC128211069
+106	LOC128208124	LOC128207715	E3 ubiquitin-protein ligase HECTD1-like	hypoxia-inducible factor 1-alpha-like
+107	LOC128212909	LOC128213265	uncharacterized LOC128212909	uncharacterized LOC128213265
+108	LOC128208306	LOC128244920	uncharacterized LOC128208306	turripeptide Gsg9.2-like
+109	LOC128233842	LOC128234078	dolichyl-diphosphooligosaccharide--protein glycosyltransferase subunit STT3B-like	uncharacterized LOC128234078
+110	LOC128232450	LOC128232449	uncharacterized LOC128232450	uncharacterized LOC128232449
+111	LOC128227986	LOC128226540	NBAS subunit of NRZ tethering complex-like	serum response factor-binding protein 1-like
+112	LOC128217624	LOC128208530	uncharacterized LOC128217624	multiple inositol polyphosphate phosphatase 1-like
+113	LOC128219881	LOC128220220	zinc metalloproteinase nas-15-like	uncharacterized LOC128220220
+114	LOC128236077	LOC128236300	uncharacterized LOC128236077	centrosomal protein of 70 kDa-like
+115	LOC128228088	LOC128226488	unconventional myosin-IXAa-like	histone 24-like
+116	LOC128234040	LOC128235741	phosphatidylinositol 4%2C5-bisphosphate 3-kinase catalytic subunit delta isoform-like	mucin-4-like
+117	LOC128219925	LOC128234178	uncharacterized LOC128219925	platelet glycoprotein Ib alpha chain-like
+118	LOC128228088	LOC128227479	unconventional myosin-IXAa-like	E3 ubiquitin-protein ligase NEDD4-like
+119	LOC128208922	LOC128231555	muscle-specific protein 300 kDa-like	uncharacterized LOC128231555
+120	LOC128228318	LOC128206454	coronin-7-like	FAS-associated factor 2-like
+121	LOC128225962	LOC128243278	uncharacterized LOC128225962	AFG3-like protein 2
+122	LOC128237500	LOC128236785	ras-related protein R-Ras2-like	peptidyl-prolyl cis-trans isomerase-like 4
+123	LOC128234590	LOC128234655	E3 ubiquitin-protein ligase TTC3-like	uncharacterized LOC128234655
+124	LOC128225604	LOC128230230	uncharacterized LOC128225604	twinkle mtDNA helicase-like
+125	LOC128207271	LOC128218201	small nuclear ribonucleoprotein Sm D2	protein C12orf4 homolog
+126	LOC128226788	LOC128214573	tubulin-specific chaperone A-like	probable serine/threonine-protein kinase kinX
+127	LOC128214107	LOC128222072	protein FAM110B-like	dipeptidyl peptidase 9-like
+128	LOC128242844	LOC128237476	uncharacterized LOC128242844	USP6 N-terminal-like protein
+129	LOC128217897	LOC128236074	histone-lysine N-methyltransferase SUV39H2-like	26S proteasome non-ATPase regulatory subunit 3-like
+130	LOC128224298	LOC128224115	uncharacterized protein C05D11.1-like	speckle-type POZ protein-like
+131	LOC128218201	LOC128209885	protein C12orf4 homolog	solute carrier family 46 member 3-like
+132	LOC128217796	LOC128218397	ER degradation-enhancing alpha-mannosidase-like protein 1	protein kish-B-like
+133	LOC128237776	LOC128237333	uncharacterized LOC128237776	superoxide dismutase [Mn]%2C mitochondrial-like
+134	LOC128220557	LOC128212833	sulfotransferase 1B1-like	holocytochrome c-type synthase-like
+135	LOC128206415	LOC128212936	uncharacterized LOC128206415	calcium-regulated heat-stable protein 1-like
+136	LOC128208914	LOC128206410	uncharacterized LOC128208914	forkhead box protein K2-like
+137	LOC128239812	LOC128231717	cyclin-dependent kinase 5-like	neuromedin-K receptor-like
+138	LOC128238752	LOC128244161	uncharacterized LOC128238752	uncharacterized LOC128244161
+139	LOC128235070	LOC128208216	uncharacterized LOC128235070	acid phosphatase type 7-like
+140	LOC128231524	LOC128211308	RAD51-associated protein 1-like	uncharacterized LOC128211308
+141	LOC128214109	LOC128213046	transcription initiation factor TFIID subunit 2-like	ribonucleoside-diphosphate reductase small chain-like
+142	LOC128230415	LOC128231743	vinculin-like	synaptic vesicle 2-related protein-like
+143	LOC128207810	LOC128207814	WD repeat-containing protein 27-like	solute carrier family 46 member 3-like
+144	LOC128204420	LOC128209906	uncharacterized LOC128204420	crossover junction endonuclease EME1-like
+145	LOC128246252	LOC128202852	organic cation transporter protein-like	signal recognition particle receptor subunit beta-like
+146	LOC128228373	LOC128228991	TBC1 domain family member 1-like	sodium- and chloride-dependent glycine transporter 1-like
+147	LOC128202752	LOC128210968	eukaryotic translation initiation factor 4 gamma 3-like	mediator of RNA polymerase II transcription subunit 28-like
+148	LOC128237223	LOC128237291	transcriptional enhancer factor TEF-1-like	plexin-B1-like
+149	LOC128238819	LOC128211557	E3 ubiquitin-protein ligase XIAP-like	uncharacterized LOC128211557
+150	LOC128234681	LOC128245531	ceramide synthase 4-like	uncharacterized LOC128245531
+151	LOC128231555	LOC128229841	uncharacterized LOC128231555	DNA polymerase delta catalytic subunit-like
+152	LOC128244920	LOC128208306	turripeptide Gsg9.2-like	uncharacterized LOC128208306
+153	LOC128237217	LOC128238835	uncharacterized LOC128237217	zinc finger protein 148-like
+154	LOC128238064	LOC128237392	nesprin-2-like	synaptotagmin-7-like
+155	LOC128235162	LOC128236313	zinc finger protein 189-like	uncharacterized LOC128236313
+156	LOC128245524	LOC128242444	uncharacterized LOC128245524	uncharacterized LOC128242444
+157	LOC128242171	LOC128242095	rotatin-like	uncharacterized LOC128242095
+158	LOC128230573	LOC128232635	autism susceptibility gene 2 protein-like	sugar transporter SWEET1-like
+159	LOC128211603	LOC128212549	sideroflexin-1-like	transmembrane protein 128-like
+160	LOC128227780	LOC128224739	semaphorin-2A-like	uncharacterized LOC128224739
+161	LOC128216464	LOC128216417	plexin-A2-like	vezatin-like
+162	LOC128227690	LOC128227831	dual oxidase-like	uncharacterized LOC128227831
+163	LOC128203947	LOC128243357	dynein axonemal heavy chain 3-like	delphilin-like
+164	LOC128217180	LOC128215775	uncharacterized LOC128217180	ryncolin-4-like
+165	LOC128242899	LOC128242078	ubiquitin carboxyl-terminal hydrolase 10-like	protein BANP-like
+166	LOC128218202	LOC128224131	S-crystallin SL11-like	multivesicular body subunit 12B-like
+167	LOC128232514	LOC128231728	rho GTPase-activating protein 5-like	proteoglycan 4-like
+168	LOC128225644	LOC128215884	aryl hydrocarbon receptor nuclear translocator homolog	uncharacterized LOC128215884
+169	LOC128210416	LOC128211069	carbohydrate sulfotransferase 15-like	uncharacterized LOC128211069
+170	LOC128219956	LOC128224797	uncharacterized LOC128219956	sodium/glucose cotransporter 4-like
+171	LOC128207218	LOC128231280	double zinc ribbon and ankyrin repeat-containing protein 1-like	phosphatidylinositol 4-kinase alpha-like
+172	LOC128243009	LOC128206476	N-acetylglucosamine-1-phosphotransferase subunit gamma-like	peptidyl-prolyl cis-trans isomerase A-like
+173	LOC128238115	LOC128239272	phosphatidylinositol phosphatase PTPRQ-like	uncharacterized LOC128239272
+174	LOC128235673	LOC128227628	ATP synthase subunit beta%2C mitochondrial-like	deoxyribonuclease-1-like
+175	LOC128230537	LOC128232607	uncharacterized LOC128230537	uncharacterized LOC128232607
+176	LOC128244668	LOC128234720	uncharacterized LOC128244668	40S ribosomal protein S19
+177	LOC128242996	LOC128244458	retinoblastoma-like protein 1	protein O-glucosyltransferase 2-like
+178	LOC128226622	LOC128227690	U3 small nucleolar RNA-associated protein 15 homolog	dual oxidase-like
+179	LOC128205416	LOC128234748	uncharacterized LOC128205416	T-complex protein 1 subunit epsilon-like
+180	LOC128231970	LOC128232903	protein ABHD11-like	uncharacterized LOC128232903
+181	LOC128231134	LOC128232643	mediator of RNA polymerase II transcription subunit 13-like	uncharacterized LOC128232643
+182	LOC128207593	LOC128216610	uncharacterized LOC128207593	origin recognition complex subunit 5-like
+183	LOC128203760	LOC128202671	mitotic spindle assembly checkpoint protein MAD2B-like	uncharacterized LOC128202671
