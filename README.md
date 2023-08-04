@@ -14,7 +14,7 @@ If you use any of these methods or data for your own research, please use the fo
 ## Dependencies
 
 ### Software:
-* etc
+* sratools (v2.10.4)
 * etc
 
 ### R packages
@@ -24,7 +24,8 @@ If you use any of these methods or data for your own research, please use the fo
 
 ## Download Mya arenaria genome and RNAseq files
 Edit target directories if desired
-Requires sratools[https://github.com/ncbi/sra-tools/wiki]
+
+Requires [sratools](https://github.com/ncbi/sra-tools/wiki)
 ```
 INPUT_FOLDER=./inputs
 OUTPUT_FOLDER=./outputs
