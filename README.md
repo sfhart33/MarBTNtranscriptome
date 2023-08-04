@@ -15,7 +15,8 @@ If you use any of these methods or data for your own research, please use the fo
 
 ### Software:
 * sratools (v2.10.4) to download RNAseq files
-* etc
+* STAR
+* blast+
 
 ### R packages
 * etc
@@ -23,16 +24,32 @@ If you use any of these methods or data for your own research, please use the fo
 
 
 ## Download github, Mya arenaria genome, and RNAseq files
-Edit target directories if desired
+*Edit target directories and thread count if desired*
 
 Requires [sratools](https://github.com/ncbi/sra-tools/wiki)
 ```
 git clone https://github.com/sfhart33/MarBTNtranscriptome.git
+cd MarBTNtranscriptome
 
-INPUT_FOLDER=./inputs
-OUTPUT_FOLDER=./outputs
+INPUT_FOLDER=/ssd3/RNAseq/inputs
+# INPUT_FOLDER=./inputs
+OUTPUT_FOLDER=/ssd3/RNAseq/outputs
+# OUTPUT_FOLDER=./outputs
+THREADS=50
+
 mkdir $INPUT_FOLDER/fastq
 
 ./scripts/download_data.sh
 ```
 
+## Run scripts to prepare STAR inde and prepare gene annotations
+```
+./scripts/gene_annotations.sh $INPUT_FOLDER
+```
+
+## Run makefile to run pipeline
+```
+# make # standard
+make --jobs # multithreaded
+# make --jobs --max-load 80 # multithreaded with max threads
+```
