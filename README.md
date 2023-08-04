@@ -14,7 +14,7 @@ If you use any of these methods or data for your own research, please use the fo
 ## Dependencies
 
 ### Software:
-* sratools (v2.10.4)
+* sratools (v2.10.4) to download RNAseq files
 * etc
 
 ### R packages
@@ -22,14 +22,17 @@ If you use any of these methods or data for your own research, please use the fo
 * etc
 
 
-## Download Mya arenaria genome and RNAseq files
+## Download github, Mya arenaria genome, and RNAseq files
 Edit target directories if desired
 
 Requires [sratools](https://github.com/ncbi/sra-tools/wiki)
 ```
+git clone https://github.com/sfhart33/MarBTNtranscriptome.git
+
 INPUT_FOLDER=./inputs
 OUTPUT_FOLDER=./outputs
 mkdir $INPUT_FOLDER/fastq
+
 ./scripts/download_data.sh
 ```
 
