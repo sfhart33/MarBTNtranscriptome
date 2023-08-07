@@ -14,12 +14,18 @@ Follow the steps below to recreate the data analysis from the Metzger lab's puli
 
 ### Software:
 * sratools (v2.10.4) to download RNAseq files
-* STAR
-* blast+
+* STAR ()
+* blast+ ()
 
-### R packages
-* etc
-* etc
+### R (v3.6.0) packages
+* tidyverse (v1.3.0)
+* msigdbr ()
+* DESeq2 ()
+* stats ()
+* GO.db ()
+* factoextra ()
+* pheatmap ()
+* fgsea ()
 
 ## Download github, Mya arenaria genome, and RNAseq files
 *Edit target directories and thread count if desired*
@@ -41,7 +47,6 @@ Each fastq file may take ~1hr to download - expect to run for a day or two
 	THREADS=50
 
 # Download input data
-	mkdir $INPUT_FOLDER/fastq
 	./scripts/download_data.sh
 ```
 
@@ -52,6 +57,7 @@ Each fastq file may take ~1hr to download - expect to run for a day or two
 ```
 
 ## Run makefile to run pipeline
+*Edit config.mk with input/output locations and max thread count before running*
 ```
 make
 

@@ -1,0 +1,16 @@
+deseq_untreated.rda
+deseq_asw_pairs.rda
+asw_vs_btn_results.rda
+deseq_asw_alt.rda
+deseq_asw_btn_heme.rda
+deseq_asw_heme.rda
+heme_vs_ASWbtn_results.rda
+deseq_run_BTNheme.rda
+heme_vs_btn_results.rda
+deseq_BTNnonheme.rda
+notheme_vs_btn_results.rda
+rnaseq.tsv
+samples_data.rda
+rnaseq.rda
+rnaseq_norm.rda
+rnaseq_norm_tissuespecific.rda

@@ -4,9 +4,8 @@
 include config.mk
 
 FASTQS=$(wildcard $(INPUT_FOLDER)/fastq/*R1_001.fastq.gz)
-#FASTQS=$(INPUT_FOLDER)/fastq/21-FFM-15G1_R1_001.fastq.gz
-OUTFILES=$(patsubst $(INPUT_FOLDER)/fastq/%_R1_001.fastq.gz, $(OUTPUT_FOLDER)/star/%_ReadsPerGene.out.tab, $(FASTQS))
-
+STAROUT=$(patsubst $(INPUT_FOLDER)/fastq/%_R1_001.fastq.gz, $(OUTPUT_FOLDER)/star/%_ReadsPerGene.out.tab, $(FASTQS))
+DESEQOUT=$(awk -v location="$(OUTPUT_FOLDER)/star/" '{print location $0}' deseq_output.lst)
 # First target that checks if output files are made
 .PHONY : outputs
 outputs : $(OUTFILES)
@@ -16,7 +15,7 @@ outputs : $(OUTFILES)
 #	echo $^ $* > $@
 
 
-# Run STAR alignment
+# 1) Run STAR alignment
 $(OUTPUT_FOLDER)/star/%_ReadsPerGene.out.tab : $(INPUT_FOLDER)/fastq/%_R1_001.fastq.gz $(INPUT_FOLDER)/fastq/%_R2_001.fastq.gz
 	STAR \
             --runThreadN $(THREADS) \
@@ -27,3 +26,8 @@ $(OUTPUT_FOLDER)/star/%_ReadsPerGene.out.tab : $(INPUT_FOLDER)/fastq/%_R1_001.fa
             --quantMode GeneCounts \
             --outSAMtype None
 	rm $(OUTPUT_FOLDER)/star/$*_SJ.out.tab
+
+# 2) Run DEseq on reads/gene data
+.PHONY : nextstep
+$(DESEQOUT) : $(STAROUT)
+	mkdir -p $(OUTPUT_FOLDER)/star

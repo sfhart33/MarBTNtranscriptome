@@ -4,7 +4,3 @@ INPUT_FOLDER=/ssd3/RNAseq/inputs
 OUTPUT_FOLDER=/ssd3/RNAseq/outputs
 # OUTPUT_FOLDER=./outputs
 THREADS=80
-
-# .PHONY : modules
-# modules : 
-# 	./scripts/modules.sh

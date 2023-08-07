@@ -49,4 +49,4 @@
         print $1, hit[3]} ' OFS="\t" $GENOME/GCF_026914265.1_ASM2691426v1_protein_uniprot_blastp > $GENOME/GCF_026914265.1_ASM2691426v1_closest_gene_name.txt
 
 # Run r script to merge with human gene ontology databases
-    # Rscript  ./scripts/gene_ontology.R
+    Rscript ./scripts/gene_ontology.R $GENOME
