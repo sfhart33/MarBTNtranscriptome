@@ -1,8 +1,8 @@
 # MarBTNtranscriptome
 ## Code to accompany manuscript on gene expression of soft-shell clam transmissible cancer
-Samuel Hart, University of Washington Molecular and Cellular Biology PhD program
+Samuel Hart, University of Washington Molecular and Cellular Biology PhD program, sfhart33@gmail.com*
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*Contact for questions regarding data analysis: sfhart33@gmail.com*
+<br/>
 
 Follow the steps below to recreate the data analysis from the Metzger lab's pulication on the transcriptomics of transmissible cancer in soft-shell clams. If you use any of these methods or data for your own research, please use the following citation:
 
@@ -21,24 +21,28 @@ Follow the steps below to recreate the data analysis from the Metzger lab's puli
 * etc
 * etc
 
-
 ## Download github, Mya arenaria genome, and RNAseq files
 *Edit target directories and thread count if desired*
 
 Requires [sratools](https://github.com/ncbi/sra-tools/wiki)
+
+Each fastq file may take ~1hr to download - expect to run for a day or two
+
 ```
-git clone https://github.com/sfhart33/MarBTNtranscriptome.git
-cd MarBTNtranscriptome
+# Download git repo
+	git clone https://github.com/sfhart33/MarBTNtranscriptome.git
+	cd MarBTNtranscriptome
 
-INPUT_FOLDER=/ssd3/RNAseq/inputs
-# INPUT_FOLDER=./inputs
-OUTPUT_FOLDER=/ssd3/RNAseq/outputs
-# OUTPUT_FOLDER=./outputs
-THREADS=50
+# Set desired input and ouput folders (output files are minimal, input files are ~400Gb)
+	INPUT_FOLDER=/ssd3/RNAseq/inputs
+	# INPUT_FOLDER=./inputs
+	OUTPUT_FOLDER=/ssd3/RNAseq/outputs
+	# OUTPUT_FOLDER=./outputs
+	THREADS=50
 
-mkdir $INPUT_FOLDER/fastq
-
-./scripts/download_data.sh
+# Download input data
+	mkdir $INPUT_FOLDER/fastq
+	./scripts/download_data.sh
 ```
 
 ## Run scripts to prepare STAR index and prepare gene annotations
@@ -49,7 +53,9 @@ mkdir $INPUT_FOLDER/fastq
 
 ## Run makefile to run pipeline
 ```
-make # standard
-# make --jobs # multithreaded
-#make --jobs --max-load 50 # multithreaded with max threads
+make
+
+# multithreaded did not work well on our system but may speed things up
+	# make --jobs 
+	# make --jobs --max-load 50 # 
 ```
