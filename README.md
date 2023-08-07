@@ -46,6 +46,9 @@ Each fastq file may take ~1hr to download - expect to run for a day or two
 	# OUTPUT_FOLDER=./outputs
 	THREADS=50
 
+# Create file structure
+	./scripts/mkdirs.sh
+
 # Download input data
 	./scripts/download_data.sh
 ```
