@@ -1,17 +1,20 @@
 #!/bin/bash
+    # $1 is $INPUT_FOLDER 
+    # $2 is $THREADS
+
 
 # unzip genome and annotation files
-    zcat $INPUT_FOLDER/GCF_026914265.1_ASM2691426v1/GCF_026914265.1_ASM2691426v1_genomic.fna.gz \
-        > $INPUT_FOLDER/GCF_026914265.1_ASM2691426v1/GCF_026914265.1_ASM2691426v1_genomic.fna
-    zcat $INPUT_FOLDER/GCF_026914265.1_ASM2691426v1/GCF_026914265.1_ASM2691426v1_genomic.gtf.gz \
-        > $INPUT_FOLDER/GCF_026914265.1_ASM2691426v1/GCF_026914265.1_ASM2691426v1_genomic.gtf
+    zcat $1/GCF_026914265.1_ASM2691426v1/GCF_026914265.1_ASM2691426v1_genomic.fna.gz \
+        > $1/GCF_026914265.1_ASM2691426v1/GCF_026914265.1_ASM2691426v1_genomic.fna
+    zcat $1/GCF_026914265.1_ASM2691426v1/GCF_026914265.1_ASM2691426v1_genomic.gtf.gz \
+        > $1/GCF_026914265.1_ASM2691426v1/GCF_026914265.1_ASM2691426v1_genomic.gtf
 
 # Index genome for STAR
     # module load star
     STAR \
-        --runThreadN 20 \
+        --runThreadN $2 \
         --runMode genomeGenerate \
-        --genomeDir $INPUT_FOLDER/STARindex \
+        --genomeDir $1/STARindex \
         --readFilesCommand zcat \
-        --genomeFastaFiles $INPUT_FOLDER/GCF_026914265.1_ASM2691426v1/GCF_026914265.1_ASM2691426v1_genomic.fna \
-        --sjdbGTFfile $INPUT_FOLDER/GCF_026914265.1_ASM2691426v1/GCF_026914265.1_ASM2691426v1_genomic.gtf
+        --genomeFastaFiles $1/GCF_026914265.1_ASM2691426v1/GCF_026914265.1_ASM2691426v1_genomic.fna \
+        --sjdbGTFfile $1/GCF_026914265.1_ASM2691426v1/GCF_026914265.1_ASM2691426v1_genomic.gtf

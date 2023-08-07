@@ -1,4 +1,6 @@
 #!/bin/bash
+    # $1 is $INPUT_FOLDER 
+    # $2 is $THREADS
 
 # Script converts genome annotation files to simple tables
     GENOME=$1/GCF_026914265.1_ASM2691426v1
@@ -40,7 +42,7 @@
     # module load blast+
     echo Blasting mya sequences for most similar human sequences
     makeblastdb -in $GENOME/uniprot_sprot.fasta -out $GENOME/uniprot_sprot -dbtype prot
-    blastp -query $GENOME/GCF_026914265.1_ASM2691426v1_protein.faa -db $GENOME/uniprot_sprot -evalue 1e-6 -max_hsps 1 -max_target_seqs 1 -outfmt 6 -out $GENOME/GCF_026914265.1_ASM2691426v1_protein_uniprot_blastp -num_threads $THREADS
+    blastp -query $GENOME/GCF_026914265.1_ASM2691426v1_protein.faa -db $GENOME/uniprot_sprot -evalue 1e-6 -max_hsps 1 -max_target_seqs 1 -outfmt 6 -out $GENOME/GCF_026914265.1_ASM2691426v1_protein_uniprot_blastp -num_threads $2
     awk -F '\t' ' {
         split($2, columns, "_" );
         split(columns[1], hit, "|" );

@@ -42,14 +42,15 @@ mkdir $INPUT_FOLDER/fastq
 ./scripts/download_data.sh
 ```
 
-## Run scripts to prepare STAR inde and prepare gene annotations
+## Run scripts to prepare STAR index and prepare gene annotations
 ```
-./scripts/gene_annotations.sh $INPUT_FOLDER
+./scripts/index_genome.sh $INPUT_FOLDER $THREADS
+./scripts/gene_annotations.sh $INPUT_FOLDER $THREADS
 ```
 
 ## Run makefile to run pipeline
 ```
-# make # standard
-make --jobs # multithreaded
-# make --jobs --max-load 80 # multithreaded with max threads
+make # standard
+# make --jobs # multithreaded
+#make --jobs --max-load 50 # multithreaded with max threads
 ```
