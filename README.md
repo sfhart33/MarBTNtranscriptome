@@ -13,19 +13,20 @@ Follow the steps below to recreate the data analysis from the Metzger lab's puli
 ## Dependencies
 
 ### Software:
-* sratools (v2.10.4) to download RNAseq files
-* STAR ()
-* blast+ ()
+* sratools (2.10.4) to download RNAseq files
+* STAR (2.7.4a) to align reads
+* blast (2.10.0) to annotate closest gene hits
+* STAR-Fusion (1.11.0) to call gene fusions
+  * using singularity (3.6.4)
 
-### R (v3.6.0) packages
-* tidyverse (v1.3.0)
-* msigdbr ()
-* DESeq2 ()
-* stats ()
-* GO.db ()
-* factoextra ()
-* pheatmap ()
-* fgsea ()
+### R (3.6.0) packages used
+* tidyverse (1.3.0)
+* msigdbr (7.5.1)
+* DESeq2 (1.26.0)
+* GO.db (3.10.0)
+* factoextra (1.0.7)
+* pheatmap (1.0.12)
+* fgsea (1.12.0)
 
 ## Download github, Mya arenaria genome, and RNAseq files
 *Edit target directories and thread count if desired*
@@ -63,8 +64,4 @@ Each fastq file may take ~1hr to download - expect to run for a day or two
 *Edit config.mk with input/output locations and max thread count before running*
 ```
 make
-
-# multithreaded did not work well on our system but may speed things up
-	# make --jobs 
-	# make --jobs --max-load 50 # 
 ```
