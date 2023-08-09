@@ -16,8 +16,9 @@ Follow the steps below to recreate the data analysis from the Metzger lab's puli
 * sratools (2.10.4) to download RNAseq files
 * STAR (2.7.4a) to align reads
 * blast (2.10.0) to annotate closest gene hits
-* STAR-Fusion (1.11.0) to call gene fusions
-  * using singularity (3.6.4)
+* singularity (3.6.4) to run...
+  * STAR-Fusion (1.11.0) to call gene fusions
+  * Can alter code to run other STAR-Fusion installations
 
 ### R (3.6.0) packages used
 * tidyverse (1.3.0)
@@ -26,7 +27,7 @@ Follow the steps below to recreate the data analysis from the Metzger lab's puli
 * GO.db (3.10.0)
 * factoextra (1.0.7)
 * pheatmap (1.0.12)
-* fgsea (1.12.0)
+* fgsea (1.27.0)
 
 ## Download github, Mya arenaria genome, and RNAseq files
 *Edit target directories and thread count if desired*
@@ -60,8 +61,22 @@ Each fastq file may take ~1hr to download - expect to run for a day or two
 ./scripts/gene_annotations.sh $INPUT_FOLDER $THREADS
 ```
 
-## Run makefile to run pipeline
+## Run makefile to run main pipeline
 *Edit config.mk with input/output locations and max thread count before running*
 ```
-make
+make outputs
 ```
+
+## For fusion analysis 
+*We used singularity image of STAR-Fusion. You may need to alter these scripts depending on how you access STAR-Fusion.*
+```
+# Download singularity image
+	wget https://data.broadinstitute.org/Trinity/CTAT_SINGULARITY/STAR-Fusion/__archived_releases/star-fusion.v1.11.0.simg -P $INPUT_FOLDER/
+
+# Generate genome index to run STAR-Fusion
+	./scripts/index_starfusion.sh $INPUT_FOLDER $THREADS
+
+# Run Fusion portion of pipeline
+	make fusion
+```
+

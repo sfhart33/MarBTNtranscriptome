@@ -25,7 +25,7 @@
                                     sep = "\t",
                                     head = FALSE,
                                     col.names = c("gene","description"))
-    #uniprot_location <- "/ssd2/Illumina_data/RNAseq/GCF_026914265.1_ASM2691426v1/uniprot_blast/mya_genes_uniprot_hits.txt"
+    # uniprot_location <- "/ssd2/Illumina_data/RNAseq/GCF_026914265.1_ASM2691426v1/uniprot_blast/mya_genes_uniprot_hits.txt"
     uniprot_location <- paste0(input_folder,"/GCF_026914265.1_ASM2691426v1/mya_genes_uniprot_hits.txt")
     uniprot_translations <- read.delim(uniprot_location,
                                        sep = "\t",
@@ -34,8 +34,10 @@
         dplyr::select(-description)
 
 # Load gene set annoation information
+    # load("/ssd2/Illumina_data/RNAseq/GCF_026914265.1_ASM2691426v1/uniprot_blast/mya_gene_set_list.Rda")
     load(paste0(input_folder,"/GCF_026914265.1_ASM2691426v1/mya_gene_set_list.Rda"))
     C5_gene_set_full <- msigdbr(species = "Homo sapiens", category = "C5") #C5: ontology gene sets
+    # load("/ssd2/Illumina_data/RNAseq/GCF_026914265.1_ASM2691426v1/uniprot_blast/mya_ncbi_GO.Rda")
     load(paste0(input_folder,"/GCF_026914265.1_ASM2691426v1/mya_ncbi_GO.Rda"))
     count_GOs <- mya_ncbi_GO$gs_name %>% unique() %>% length()
     gs_info_df <- C5_gene_set_full %>%
@@ -93,8 +95,9 @@
     # Run GSEA
         set.seed(12345)
         gsea_result <- fgseaMultilevel(pathways = gene_set_list,
-                        stats    = ranking) %>%
-            left_join(gs_to_go)
+                                       stats = ranking)
+                                       #nproc = 1) # Changed to try and address issue running for heme_BTN
+        gsea_result <- left_join(gsea_result, gs_to_go)
     # print top100 lists
         filter(gsea_result, NES > 0) %>%
             arrange(padj) %>%
@@ -110,16 +113,14 @@
                         sep="\t", row.names = FALSE, quote = FALSE)
         return(gsea_result)
     }
+    notheme_BTN_GSEA <- rank_and_GSEA(notheme_BTN, "BTN_vs_tissue")
+    save(notheme_BTN_GSEA, file = "notheme_BTN_GSEA.rda")    
     ASW_BTN_GSEA <- rank_and_GSEA(ASW_BTN, "ASW_vs_BTN")
     save(ASW_BTN_GSEA, file = "ASW_BTN_GSEA.rda")
     heme_ASW_BTN_GSEA <- rank_and_GSEA(heme_ASW_BTN, "ASW_vs_heme")
     save(heme_ASW_BTN_GSEA, file = "heme_ASW_BTN_GSEA.rda")
     heme_BTN_GSEA <- rank_and_GSEA(heme_BTN, "BTN_vs_heme")
     save(heme_BTN_GSEA, file = "heme_BTN_GSEA.rda")
-    notheme_BTN_GSEA <- rank_and_GSEA(notheme_BTN, "BTN_vs_tissue")
-    save(notheme_BTN_GSEA, file = "notheme_BTN_GSEA.rda")
 
     # If GSEA enrichment plots are desired use plotEnrichment function:
     # https://bioconductor.org/packages/release/bioc/vignettes/fgsea/inst/doc/fgsea-tutorial.html
-
-
