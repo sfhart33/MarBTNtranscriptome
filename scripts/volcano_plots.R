@@ -1,3 +1,5 @@
+#!/usr/bin/Rscript
+
 # Script to make volcano plots for deseq and GSEA results
 
 # input variables

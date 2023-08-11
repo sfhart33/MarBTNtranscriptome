@@ -4,6 +4,8 @@
 
 # input variables
     input_folder <- commandArgs(trailingOnly=TRUE)[1]
+    # input_folder <- "/ssd3/RNAseq/inputs"
+	# output_folder <- "/ssd3/RNAseq/outputs"
     output_folder <- commandArgs(trailingOnly=TRUE)[2]
 
 # Load Packages
@@ -19,9 +21,9 @@
     samples <- samples_data %>% pull(name) %>% as.vector()
 
 # Healthy subset
-    samples_data_healthy <- samples_data %>% filter(heme != "BTN",
-                                                clam != "HEL_4",
-                                                clam != "HEL_5")
+    samples_data_healthy <- samples_data %>% filter(clam ==  "HEL_1",
+                                                clam == "HEL_2",
+                                                clam == "HEL_3")
     samples_healthy <- samples_data_healthy %>% pull(name) %>% as.vector()
 
 # Gene name conversion (these are in same order)
@@ -65,7 +67,7 @@
     #setwd("/home/shart/github/MarBTNtranscriptome/outputs/data_tables")
     setwd(paste0(output_folder, "/data_tables"))
     # Deseq on everything except treated cells
-        include <- (samples_data$tissue != "ASW")
+        include <- !(samples_data$tissue %in% c("ASW", "heme_ASW"))
         deseq_untreated <- DESeqDataSetFromMatrix(countData = rnaseq[,include],
                                     colData = samples_data[include,],
                                     design = ~ tissue) %>%
@@ -119,7 +121,7 @@
         save(heme_BTN, file = "heme_vs_btn_results.rda")
 
     # Deseq on BTN vs everything but hemocytes
-        include <- !(samples_data$tissue %in% c("ASW", "heme"))
+        include <- !(samples_data$tissue %in% c("ASW", "heme", "heme_ASW"))
         deseq_BTNnonheme <- DESeqDataSetFromMatrix(countData = rnaseq[,include],
                                     colData = samples_data[include,],
                                     design = ~ heme) %>%
@@ -131,7 +133,35 @@
             #############################
             #### ADD PEI COMPARISONS ####
             #############################
+    # Deseq on BTN USA vs PEI
+        include <- (samples_data$tissue == "BTN")
+        deseq_UvsP_BTN <- DESeqDataSetFromMatrix(countData = rnaseq[,include],
+                                    colData = samples_data[include,],
+                                    design = ~ location) %>%
+            DESeq()
+        save(deseq_UvsP_BTN, file = "deseq_UvsP_BTN.rda")
+        UvsP_BTN <- results(deseq_UvsP_BTN, name="location_USA_vs_PEI")
+        save(UvsP_BTN, file = "UvsP_BTN_results.rda")
 
+    # Deseq on healthy USA vs PEI
+        include <- (samples_data$tissue == "heme")
+        deseq_UvsP_heme <- DESeqDataSetFromMatrix(countData = rnaseq[,include],
+                                    colData = samples_data[include,],
+                                    design = ~ location) %>%
+            DESeq()
+        save(deseq_UvsP_heme, file = "deseq_UvsP_heme.rda")
+        UvsP_heme <- results(deseq_UvsP_heme, name="location_USA_vs_PEI")
+        save(UvsP_heme, file = "UvsP_heme_results.rda")
+
+    # Deseq on heme ASW pairings
+        include <- samples_data$clam %in% c("HEL_6", "HEL_7", "HEL_8")
+        deseq_asw_heme_pairs <- DESeqDataSetFromMatrix(countData = rnaseq[,include],
+                                    colData = samples_data[include,],
+                                    design = ~ clam + tissue) %>%
+            DESeq()
+        save(deseq_asw_heme_pairs, file = "deseq_asw_heme_pairs.rda")
+        ASWheme_heme <- results(deseq_asw_heme_pairs, name="tissue_heme_vs_ASW_heme")
+        save(ASWheme_heme, file = "aswheme_vs_heme_results.rda")
 ###############################################
 # DESEQ TO DETERMINE TISSUE-SPECIFIC EXPRESSION
 ###############################################

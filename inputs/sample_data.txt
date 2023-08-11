@@ -1,29 +1,36 @@
-name	clam	tissue	heme	mantle	gill	muscle	siphon	foot	HEL_1	HEL_2	HEL_3
-01-FFM-28E5	BTN_1	BTN	BTN	BTN	BTN	BTN	BTN	BTN	BTN	BTN	BTN
-02-FFM-28E6	BTN_2	BTN	BTN	BTN	BTN	BTN	BTN	BTN	BTN	BTN	BTN
-03-FFM-28E7	BTN_3	BTN	BTN	BTN	BTN	BTN	BTN	BTN	BTN	BTN	BTN
-04-FFM-28E5-ASW	BTN_1	ASW	BTN	BTN	BTN	BTN	BTN	BTN	BTN	BTN	BTN
-05-FFM-28E6-ASW	BTN_2	ASW	BTN	BTN	BTN	BTN	BTN	BTN	BTN	BTN	BTN
-06-FFM-28E7-ASW	BTN_3	ASW	BTN	BTN	BTN	BTN	BTN	BTN	BTN	BTN	BTN
-07-FFM-27C11-heme	HEL_2	heme	heme	not	not	not	not	not	not	HEL_2	not
-08-FFM-27C11-mantle	HEL_2	mantle	not	mantle	not	not	not	not	not	HEL_2	not
-09-FFM-27C11-gill	HEL_2	gill	not	not	gill	not	not	not	not	HEL_2	not
-10-FFM-27C11-muscle	HEL_2	muscle	not	not	not	muscle	not	not	not	HEL_2	not
-11-FFM-27C11-siphon	HEL_2	siphon	not	not	not	not	siphon	not	not	HEL_2	not
-12-FFM-27C11-foot	HEL_2	foot	not	not	not	not	not	foot	not	HEL_2	not
-13-FFM-27H7-heme	HEL_3	heme	heme	not	not	not	not	not	not	not	HEL_3
-14-FFM-27H7-mantle	HEL_3	mantle	not	mantle	not	not	not	not	not	not	HEL_3
-15-FFM-27H7-gill	HEL_3	gill	not	not	gill	not	not	not	not	not	HEL_3
-16-FFM-27H7-muscle	HEL_3	muscle	not	not	not	muscle	not	not	not	not	HEL_3
-17-FFM-27H7-siphon	HEL_3	siphon	not	not	not	not	siphon	not	not	not	HEL_3
-18-FFM-27H7-foot	HEL_3	foot	not	not	not	not	not	foot	not	not	HEL_3
-19-FFM-15G11	BTN_4	BTN	BTN	BTN	BTN	BTN	BTN	BTN	BTN	BTN	BTN
-20-FFM-16G1	BTN_5	BTN	BTN	BTN	BTN	BTN	BTN	BTN	BTN	BTN	BTN
-21-FFM-15G1	HEL_4	heme	heme	not	not	not	not	not	not	not	not
-22-FFM-16B11	HEL_5	heme	heme	not	not	not	not	not	not	not	not
-MELC-2E11-1-mantle	HEL_1	mantle	not	mantle	not	not	not	not	HEL_1	not	not
-MELC-2E11-2-foot	HEL_1	foot	not	not	not	not	not	foot	HEL_1	not	not
-MELC-2E11-3-siphon	HEL_1	siphon	not	not	not	not	siphon	not	HEL_1	not	not
-MELC-2E11-5-muscle	HEL_1	muscle	not	not	not	muscle	not	not	HEL_1	not	not
-MELC-2E11-6-gills	HEL_1	gill	not	not	gill	not	not	not	HEL_1	not	not
-MELC-2E11-7-hemocytes	HEL_1	heme	heme	not	not	not	not	not	HEL_1	not	not
+name	clam	tissue	heme	mantle	gill	muscle	siphon	foot	location
+01-FFM-28E5	BTN_1	BTN	BTN	BTN	BTN	BTN	BTN	BTN	USA
+02-FFM-28E6	BTN_2	BTN	BTN	BTN	BTN	BTN	BTN	BTN	USA
+03-FFM-28E7	BTN_3	BTN	BTN	BTN	BTN	BTN	BTN	BTN	USA
+04-FFM-28E5-ASW	BTN_1	ASW	BTN	BTN	BTN	BTN	BTN	BTN	USA
+05-FFM-28E6-ASW	BTN_2	ASW	BTN	BTN	BTN	BTN	BTN	BTN	USA
+06-FFM-28E7-ASW	BTN_3	ASW	BTN	BTN	BTN	BTN	BTN	BTN	USA
+07-FFM-27C11-heme	HEL_2	heme	heme	not	not	not	not	not	USA
+08-FFM-27C11-mantle	HEL_2	mantle	not	mantle	not	not	not	not	USA
+09-FFM-27C11-gill	HEL_2	gill	not	not	gill	not	not	not	USA
+10-FFM-27C11-muscle	HEL_2	muscle	not	not	not	muscle	not	not	USA
+11-FFM-27C11-siphon	HEL_2	siphon	not	not	not	not	siphon	not	USA
+12-FFM-27C11-foot	HEL_2	foot	not	not	not	not	not	foot	USA
+13-FFM-27H7-heme	HEL_3	heme	heme	not	not	not	not	not	USA
+14-FFM-27H7-mantle	HEL_3	mantle	not	mantle	not	not	not	not	USA
+15-FFM-27H7-gill	HEL_3	gill	not	not	gill	not	not	not	USA
+16-FFM-27H7-muscle	HEL_3	muscle	not	not	not	muscle	not	not	USA
+17-FFM-27H7-siphon	HEL_3	siphon	not	not	not	not	siphon	not	USA
+18-FFM-27H7-foot	HEL_3	foot	not	not	not	not	not	foot	USA
+19-FFM-15G11	BTN_4	BTN	BTN	BTN	BTN	BTN	BTN	BTN	USA
+20-FFM-16G1	BTN_5	BTN	BTN	BTN	BTN	BTN	BTN	BTN	USA
+21-FFM-15G1	HEL_4	heme	heme	not	not	not	not	not	USA
+22-FFM-16B11	HEL_5	heme	heme	not	not	not	not	not	USA
+MELC-2E11-1-mantle	HEL_1	mantle	not	mantle	not	not	not	not	USA
+MELC-2E11-2-foot	HEL_1	foot	not	not	not	not	not	foot	USA
+MELC-2E11-3-siphon	HEL_1	siphon	not	not	not	not	siphon	not	USA
+MELC-2E11-5-muscle	HEL_1	muscle	not	not	not	muscle	not	not	USA
+MELC-2E11-6-gills	HEL_1	gill	not	not	gill	not	not	not	USA
+MELC-2E11-7-hemocytes	HEL_1	heme	heme	not	not	not	not	not	USA
+PSH-A2	HEL_6	heme	heme	not	not	not	not	not	PEI
+PSH-A6	HEL_7	heme	heme	not	not	not	not	not	PEI
+PSH-B7	HEL_8	heme	heme	not	not	not	not	not	PEI
+PSH-A2-ASW	HEL_6	heme_ASW	heme_ASW	heme_ASW	heme_ASW	heme_ASW	heme_ASW	heme_ASW	PEI
+PSH-A6-ASW	HEL_7	heme_ASW	heme_ASW	heme_ASW	heme_ASW	heme_ASW	heme_ASW	heme_ASW	PEI
+PSH-B7-ASW	HEL_8	heme_ASW	heme_ASW	heme_ASW	heme_ASW	heme_ASW	heme_ASW	heme_ASW	PEI
+PSH-A12-BTN	BTN_6	BTN	BTN	BTN	BTN	BTN	BTN	BTN	PEI

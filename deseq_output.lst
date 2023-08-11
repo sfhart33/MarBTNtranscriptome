@@ -9,6 +9,13 @@ deseq_run_BTNheme.rda
 heme_vs_btn_results.rda
 deseq_BTNnonheme.rda
 notheme_vs_btn_results.rda
+deseq_UvsP_BTN.rda
+UvsP_BTN_results.rda
+deseq_UvsP_heme.rda
+UvsP_heme_results.rda
+deseq_asw_heme_pairs.rda
+tissue_heme_vs_ASW_heme
+aswheme_vs_heme_results.rda
 rnaseq.tsv
 samples_data.rda
 rnaseq.rda

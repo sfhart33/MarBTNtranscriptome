@@ -1,3 +1,5 @@
+#!/usr/bin/Rscript
+
 # Script to plot PCA/clustering figures
 
 # input variables
