@@ -22,7 +22,7 @@
     load("notheme_vs_btn_results.rda") # heme_ASW_BTN: negative is higher in BTN-ASW
     load("UvsP_BTN_results.rda") # UvsP_BTN: negative is higher in PEI
     load("UvsP_heme_results.rda") # UvsP_heme: negative is higher in PEI
-    load("aswheme_vs_heme_results.rda") # ASWheme_heme: negative is higher in ASW
+    load("heme_vs_aswheme_results.rda") # heme_ASWheme: negative is higher in untreated
 
 # Load NCBI descriptions and annotations
     gene_location <- paste0(input_folder,"/GCF_026914265.1_ASM2691426v1/gene_translation.txt")
@@ -82,7 +82,7 @@
     print_top100(heme_ASW_BTN, "ASW_vs_heme")
     print_top100(UvsP_BTN, "USA_vs_PEI_BTN")
     print_top100(UvsP_heme, "USA_vs_PEI_heme")
-    print_top100(ASWheme_heme, "ASWheme_vs_heme")
+    print_top100(heme_ASWheme, "heme_vs_ASWheme")
 
 # Run Gene Set Enrichment Analysis
     rank_and_GSEA <- function(input, comparison){
@@ -133,8 +133,8 @@
     save(USA_vs_PEI_BTN_GSEA, file = "USA_vs_PEI_BTN_GSEA.rda")
     USA_vs_PEI_heme_GSEA <- rank_and_GSEA(UvsP_heme, "USA_vs_PEI_heme")
     save(USA_vs_PEI_heme_GSEA, file = "USA_vs_PEI_heme_GSEA.rda")
-    ASWheme_vs_heme_GSEA <- rank_and_GSEA(ASWheme_heme, "ASWheme_vs_heme")
-    save(ASWheme_vs_heme_GSEA file = "ASWheme_vs_heme_GSEA.rda")
+    heme_vs_ASWheme_GSEA <- rank_and_GSEA(heme_ASWheme, "heme_vs_ASWheme")
+    save(heme_vs_ASWheme_GSEA, file = "heme_vs_ASWheme_GSEA.rda")
 
     
     # If GSEA enrichment plots are desired use plotEnrichment function:

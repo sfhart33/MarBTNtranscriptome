@@ -160,8 +160,8 @@
                                     design = ~ clam + tissue) %>%
             DESeq()
         save(deseq_asw_heme_pairs, file = "deseq_asw_heme_pairs.rda")
-        ASWheme_heme <- results(deseq_asw_heme_pairs, name="tissue_heme_vs_ASW_heme")
-        save(ASWheme_heme, file = "aswheme_vs_heme_results.rda")
+        heme_ASWheme <- results(deseq_asw_heme_pairs, name="tissue_heme_ASW_vs_heme")
+        save(heme_ASWheme, file = "heme_vs_aswheme_results.rda")
 ###############################################
 # DESEQ TO DETERMINE TISSUE-SPECIFIC EXPRESSION
 ###############################################
