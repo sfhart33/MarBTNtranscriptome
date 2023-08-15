@@ -4,6 +4,7 @@
 
 # input variables
     output_folder <- commandArgs(trailingOnly=TRUE)[1]
+    # output_folder <- "/ssd3/RNAseq/outputs"
 
 # Load packages
     library(DESeq2)
@@ -19,6 +20,14 @@
     load("heme_ASW_BTN_GSEA.rda")
     load("heme_BTN_GSEA.rda")
     load("notheme_BTN_GSEA.rda")
+
+    #new 
+    load("UvsP_BTN_results.rda") # UvsP_BTN: negative is higher in PEI
+    load("UvsP_heme_results.rda") # UvsP_heme: negative is higher in PEI
+    load("heme_vs_aswheme_results.rda") # heme_ASWheme: negative is higher in untreated
+    load("USA_vs_PEI_BTN_GSEA.rda")
+    load("USA_vs_PEI_heme_GSEA.rda")
+    load("heme_vs_ASWheme_GSEA.rda")
 
 # Move to  plots directory
     setwd(paste0(output_folder,"/plots"))
@@ -49,10 +58,14 @@
                 )
     }
     pdf("volcano_plots_genes.pdf")
-    deseq_volcano(ASW_BTN, "no treatment vs ASW")
-    deseq_volcano(heme_ASW_BTN, "hemocyte vs ASW-BTN")
-    deseq_volcano(heme_BTN, "hemocyte vs BTN")
+    deseq_volcano(ASW_BTN, "no treatment BTN vs ASW-BTN")
+    deseq_volcano(heme_ASW_BTN, "hemocytes vs ASW-BTN")
+    deseq_volcano(heme_BTN, "hemocytes vs BTN")
     deseq_volcano(notheme_BTN, "non-hemocyte tissue vs BTN")
+
+    deseq_volcano(UvsP_BTN, "USA BTN vs PEI BTN")
+    deseq_volcano(UvsP_heme, "USA heme vs PEI heme")
+    deseq_volcano(heme_ASWheme, "ASW-treated heme vs untreated heme")
     dev.off()
 
 # Volcano plots of all gene gets for each GSEA result
@@ -84,6 +97,9 @@
     gsea_volcano(heme_ASW_BTN_GSEA, "hemocyte vs ASW-BTN")
     gsea_volcano(heme_BTN_GSEA, "hemocyte vs BTN")
     gsea_volcano(notheme_BTN_GSEA, "non-hemocyte tissue vs BTN")
+    gsea_volcano(USA_vs_PEI_BTN_GSEA, "USA BTN vs PEI BTN")
+    gsea_volcano(USA_vs_PEI_heme_GSEA, "USA heme vs PEI heme")
+    gsea_volcano(heme_vs_ASWheme_GSEA, "ASW-treated heme vs untreated heme")
     dev.off()
 
 # Comparison of results between deseq runs and GSEA runs
@@ -97,13 +113,14 @@
                 ) %>%
             rownames_to_column() %>%
             dplyr::select(rowname, log2FoldChange, padj_alt)
-        colnames(output) <- c("rowname", paste0(comparison,"_","L2FC"), paste0(comparison,"_","padj"))
+        colnames(output) <- c("gene", paste0(comparison,"_","L2FC"), paste0(comparison,"_","padj"))
         return(output)
     }
     compare_all_genes <- directional_pvalue(ASW_BTN, "BTN_vs_ASW") %>%
         inner_join(directional_pvalue(heme_ASW_BTN, "heme_vs_ASW")) %>%
         inner_join(directional_pvalue(heme_BTN, "heme_vs_BTN")) %>%
-        inner_join(directional_pvalue(notheme_BTN, "tissue_vs_BTN"))
+        inner_join(directional_pvalue(notheme_BTN, "tissue_vs_BTN")) %>%
+        inner_join(directional_pvalue(heme_ASWheme, "ASWheme_vs_heme"))
     # head(compare_all_genes)
 
     # combine data from GSEA runs with directional p-values
@@ -121,7 +138,8 @@
     compare_all_gene_sets <- directional_pvalue_GSEA(ASW_BTN_GSEA, "BTN_vs_ASW") %>%
         inner_join(directional_pvalue_GSEA(heme_ASW_BTN_GSEA, "heme_vs_ASW")) %>%
         inner_join(directional_pvalue_GSEA(heme_BTN_GSEA, "heme_vs_BTN")) %>%
-        inner_join(directional_pvalue_GSEA(notheme_BTN_GSEA, "tissue_vs_BTN"))
+        inner_join(directional_pvalue_GSEA(notheme_BTN_GSEA, "tissue_vs_BTN")) %>%
+        inner_join(directional_pvalue_GSEA(heme_vs_ASWheme_GSEA,  "ASWheme_vs_heme"))
     # head(compare_all_gene_sets)
 
     # Function to make comparison plots
@@ -161,6 +179,7 @@
     directional_pvalue_plots("heme_vs_BTN", "heme_vs_ASW", "BTN vs hemocytes", "ASW-BTN vs hemocytes", "deseq")
     directional_pvalue_plots("BTN_vs_ASW", "heme_vs_ASW", "ASW-BTN vs BTN", "ASW-BTN vs hemocytes", "deseq")
     directional_pvalue_plots("BTN_vs_ASW", "heme_vs_BTN", "ASW-BTN vs BTN", "BTN vs hemocytes", "deseq")
+    directional_pvalue_plots("BTN_vs_ASW", "ASWheme_vs_heme", "ASW-BTN vs BTN", "hemocytes vs ASW-heme", "deseq")
     dev.off()
     # GSEA gene set plots
     pdf("comparison_plots_gene_sets.pdf")
@@ -168,4 +187,5 @@
     directional_pvalue_plots("heme_vs_BTN", "heme_vs_ASW", "BTN vs hemocytes", "ASW-BTN vs hemocytes", "gsea")
     directional_pvalue_plots("BTN_vs_ASW", "heme_vs_ASW", "ASW-BTN vs BTN", "ASW-BTN vs hemocytes", "gsea")
     directional_pvalue_plots("BTN_vs_ASW", "heme_vs_BTN", "ASW-BTN vs BTN", "BTN vs hemocytes", "gsea")
+    directional_pvalue_plots("BTN_vs_ASW", "ASWheme_vs_heme", "ASW-BTN vs BTN", "hemocytes vs ASW-heme", "gsea")
     dev.off()

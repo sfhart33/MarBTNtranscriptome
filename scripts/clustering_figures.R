@@ -4,6 +4,7 @@
 
 # input variables
     output_folder <- commandArgs(trailingOnly=TRUE)[1]
+    # output_folder <- "/ssd3/RNAseq/outputs"
 
 # Load Packages
     library(DESeq2)
@@ -41,7 +42,7 @@
         column_to_rownames(var = "new_name") %>%
         select(tissue)
     mycolors <- cbPalette[1:7]
-    names(mycolors) <- sort(unique(annotations$tissue[-(4:6)]))
+    names(mycolors) <- sort(unique(annotations$tissue[!(samples_data$tissue %in% c("ASW", "heme_ASW"))]))
     mycolors <- list(tissue = mycolors)
 
 # Main plots
@@ -58,7 +59,7 @@
             axis.title = element_text(size = 16, face = "bold"),
             text = element_text(size = 16, face = "bold")
         )
-        rnaseq_norm_tissuespecific[,-(4:6)] %>% 
+        rnaseq_norm_tissuespecific[,!(samples_data$tissue %in% c("ASW", "heme_ASW"))] %>% 
             pheatmap(
             cluster_rows = FALSE,
             show_rownames = FALSE,
@@ -130,7 +131,7 @@ pdf("supplementary_pca-hc.pdf")
             annotation_col = annotations,
             main = "All samples, tissue-specific genes"
             )
-        include <- samples_data$tissue != "ASW"
+        include <- !(samples_data$tissue %in% c("ASW", "heme_ASW"))
         rnaseq_norm_tissuespecific[,include] %>% 
             pheatmap(
             cluster_rows = FALSE,
@@ -162,8 +163,8 @@ pdf("supplementary_pca-hc.pdf")
             annotation_col = annotations,
             main = "BTN and ASW-BTN, all genes"
             )
-        include <- samples_data$heme %in% c("heme","BTN")
-        rnaseq_norm_tissuespecific[,c(1:6,7,13,24,25:28)] %>% 
+        include <- samples_data$heme %in% c("heme","BTN", "heme_ASW")
+        rnaseq_norm_tissuespecific[,include] %>% 
             pheatmap(
             cluster_rows = FALSE,
             show_rownames = FALSE,
