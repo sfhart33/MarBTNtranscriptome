@@ -1,5 +1,5 @@
 # MarBTNtranscriptome
-## Code to accompany manuscript on gene expression of soft-shell clam (*<ins>M<ins>ya <ins>ar<ins>enaria*) <ins>B<ins>ivalve <ins>T<ins>ransmissible <ins>N<ins>eoplasia (MarBTN)
+## Code to accompany manuscript on gene expression of soft-shell clam (***M**ya **ar**enaria*) **B**ivalve **T**ransmissible **N**eoplasia (MarBTN)
 Samuel Hart, University of Washington Molecular and Cellular Biology PhD program, *sfhart33@gmail.com*
 
 <br/>
