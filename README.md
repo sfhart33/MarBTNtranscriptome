@@ -1,5 +1,5 @@
 # MarBTNtranscriptome
-## Code to accompany manuscript on gene expression of soft-shell clam (***M**ya **ar**enaria*) **B**ivalve **T**ransmissible **N**eoplasia (MarBTN)
+## Code to accompany manuscript on gene expression of soft-shell clam (*Mya arenaria*) Bivalve Transmissible Neoplasia (MarBTN)
 Samuel Hart, University of Washington Molecular and Cellular Biology PhD program, *sfhart33@gmail.com*
 
 <br/>
@@ -69,6 +69,7 @@ make outputs
 
 ## For fusion analysis 
 *We used singularity image of STAR-Fusion. You may need to alter these scripts depending on how you access STAR-Fusion.*
+STAR-Fusion can take a LONG time to run for all samples
 ```
 # Download singularity image
 	wget https://data.broadinstitute.org/Trinity/CTAT_SINGULARITY/STAR-Fusion/__archived_releases/star-fusion.v1.11.0.simg -P $INPUT_FOLDER/

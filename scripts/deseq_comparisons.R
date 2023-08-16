@@ -21,9 +21,8 @@
     samples <- samples_data %>% pull(name) %>% as.vector()
 
 # Healthy subset
-    samples_data_healthy <- samples_data %>% filter(clam ==  "HEL_1",
-                                                clam == "HEL_2",
-                                                clam == "HEL_3")
+    samples_data_healthy <- samples_data %>%
+        filter(clam %in% c("HEL_1", "HEL_2", "HEL_3"))
     samples_healthy <- samples_data_healthy %>% pull(name) %>% as.vector()
 
 # Gene name conversion (these are in same order)
@@ -93,7 +92,7 @@
         save(deseq_asw_alt, file = "deseq_asw_alt.rda")
 
     # Deseq on ASW and BTN and heme
-        include <- samples_data$heme %in% c("BTN", "heme")
+        include <- samples_data$heme %in% c("BTN", "heme", "heme_ASW")
         deseq_asw_btn_heme <- DESeqDataSetFromMatrix(countData = rnaseq[,include],
                                     colData = samples_data[include,],
                                     design = ~ tissue) %>%
