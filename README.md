@@ -69,7 +69,8 @@ make outputs
 
 ## For fusion analysis 
 *We used singularity image of STAR-Fusion. You may need to alter these scripts depending on how you access STAR-Fusion.*
-STAR-Fusion can take a LONG time to run for all samples
+
+Warning: STAR-Fusion can take a LONG time to run for all samples
 ```
 # Download singularity image
 	wget https://data.broadinstitute.org/Trinity/CTAT_SINGULARITY/STAR-Fusion/__archived_releases/star-fusion.v1.11.0.simg -P $INPUT_FOLDER/
