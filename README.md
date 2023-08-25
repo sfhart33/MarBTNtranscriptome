@@ -4,7 +4,7 @@ Samuel Hart, University of Washington Molecular and Cellular Biology PhD program
 
 <br/>
 
-Follow the steps below to recreate the data analysis from the Metzger lab's publication on the transcriptomics of transmissible cancer in soft-shell clams. If you use any of these methods or data for your own research, please use the following citation:
+Follow the steps below to recreate the data analysis from the [Metzger lab](https://pnri.org/metzger-lab/)'s publication on the transcriptomics of transmissible cancer in soft-shell clams. If you use any of these methods or data for your own research, please use the following citation:
 
 * *(In progress... preprint coming fall 2023)*
 
@@ -13,11 +13,11 @@ Follow the steps below to recreate the data analysis from the Metzger lab's publ
 ## Dependencies
 
 ### Software:
-* sratools (2.10.4) to download RNAseq files
-* STAR (2.7.4a) to align reads
-* blast (2.10.0) to annotate closest gene hits
+* [sratools](https://github.com/ncbi/sra-tools/wiki) (2.10.4) to download RNAseq files
+* [STAR](https://github.com/alexdobin/STAR) (2.7.4a) to align reads
+* [blast+](https://blast.ncbi.nlm.nih.gov/doc/blast-help/downloadblastdata.html#downloadblastdata) (2.10.0) to annotate closest gene hits
 * singularity (3.6.4) to run...
-  * STAR-Fusion (1.11.0) to call gene fusions
+  * [STAR-Fusion](https://github.com/STAR-Fusion/STAR-Fusion) (1.11.0) to call gene fusions
   * Can alter code to run other STAR-Fusion installations
 
 ### R (3.6.0) packages used
