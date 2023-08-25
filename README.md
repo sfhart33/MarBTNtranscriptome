@@ -16,7 +16,7 @@ Follow the steps below to recreate the data analysis from the [Metzger lab](http
 * [sratools](https://github.com/ncbi/sra-tools/wiki) (2.10.4) to download RNAseq files
 * [STAR](https://github.com/alexdobin/STAR) (2.7.4a) to align reads
 * [blast+](https://blast.ncbi.nlm.nih.gov/doc/blast-help/downloadblastdata.html#downloadblastdata) (2.10.0) to annotate closest gene hits
-* singularity (3.6.4) to run...
+* [singularity](https://docs.sylabs.io/guides/3.0/user-guide/quick_start.html) (3.6.4) to run...
   * [STAR-Fusion](https://github.com/STAR-Fusion/STAR-Fusion) (1.11.0) to call gene fusions
   * Can alter code to run other STAR-Fusion installations
 
