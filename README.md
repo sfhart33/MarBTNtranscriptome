@@ -1,10 +1,10 @@
 # MarBTNtranscriptome
-## Code to accompany manuscript on gene expression of soft-shell clam (*Mya arenaria*) Bivalve Transmissible Neoplasia (MarBTN)
+## Code to accompany manuscript on gene expression of soft-shell clam (*Mya arenaria*) bivalve transmissible neoplasia (MarBTN)
 Samuel Hart, University of Washington Molecular and Cellular Biology PhD program, *sfhart33@gmail.com*
 
 <br/>
 
-Follow the steps below to recreate the data analysis from the Metzger lab's pulication on the transcriptomics of transmissible cancer in soft-shell clams. If you use any of these methods or data for your own research, please use the following citation:
+Follow the steps below to recreate the data analysis from the Metzger lab's publication on the transcriptomics of transmissible cancer in soft-shell clams. If you use any of these methods or data for your own research, please use the following citation:
 
 * *(In progress... preprint coming fall 2023)*
 
