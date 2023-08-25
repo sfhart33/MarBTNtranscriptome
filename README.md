@@ -20,14 +20,14 @@ Follow the steps below to recreate the data analysis from the [Metzger lab](http
   * [STAR-Fusion](https://github.com/STAR-Fusion/STAR-Fusion) (1.11.0) to call gene fusions
   * Can alter code to run other STAR-Fusion installations
 
-### R (3.6.0) packages used
-* tidyverse (1.3.0)
-* msigdbr (7.5.1)
-* DESeq2 (1.26.0)
-* GO.db (3.10.0)
-* factoextra (1.0.7)
-* pheatmap (1.0.12)
-* fgsea (1.27.0)
+### R (3.6.0) packages:
+* tidyverse (1.3.0) to code and plot
+* msigdbr (7.5.1) to annotate gene sets
+* GO.db (3.10.0) to annotate gene sets
+* factoextra (1.0.7) for PCA
+* pheatmap (1.0.12) for clustered heatmaps
+* DESeq2 (1.26.0) for differential expression analysis
+* fgsea (1.27.0) for gene set enrichment analysis
 
 ## Download github, Mya arenaria genome, and RNAseq files
 *Edit target directories and thread count if desired*
