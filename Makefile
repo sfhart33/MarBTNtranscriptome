@@ -64,3 +64,11 @@ $(OUTPUT_FOLDER)/star_fusion/%.fusion_predictions.abridged.tsv : $(INPUT_FOLDER)
 			--CPU $(THREADS)
 	cp $(OUTPUT_FOLDER)/star_fusion/$*"_StarFusionOut/star-fusion.fusion_predictions.abridged.tsv" $(OUTPUT_FOLDER)/star_fusion/$*".fusion_predictions.abridged.tsv"
 	rm -r $(OUTPUT_FOLDER)/star_fusion/$*"_StarFusionOut"
+
+# Command to run genome effects analysis
+.PHONY : genome_effects
+genome_effects : $(OUTPUT_FOLDER)/plots/fusion_plot.pdf $(OUTPUT_FOLDER)/plots/cn_exp_plot.pdf
+
+# 7) Analyze fusion gene overlap among samples and how copy number and Steamer insertions affect expression
+$(OUTPUT_FOLDER)/plots/fusion_plot.pdf $(OUTPUT_FOLDER)/plots/cn_exp_plot.pdf : $(FUSIONOUT) ./inputs/genes_by_PEI_copy_number.tsv ./inputs/genes_by_USA_copy_number.tsv ./inputs/steamer_genes.tsv
+	Rscript ./scripts/gene_effects_analysis.R $(INPUT_FOLDER) $(OUTPUT_FOLDER)

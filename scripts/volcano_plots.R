@@ -63,8 +63,8 @@
     deseq_volcano(heme_BTN, "hemocytes vs BTN")
     deseq_volcano(notheme_BTN, "non-hemocyte tissue vs BTN")
 
-    deseq_volcano(UvsP_BTN, "USA BTN vs PEI BTN")
-    deseq_volcano(UvsP_heme, "USA heme vs PEI heme")
+    deseq_volcano(UvsP_BTN, "PEI BTN vs USA BTN")
+    deseq_volcano(UvsP_heme, "PEI heme vs USA heme")
     deseq_volcano(heme_ASWheme, "ASW-treated heme vs untreated heme")
     dev.off()
 
@@ -97,8 +97,8 @@
     gsea_volcano(heme_ASW_BTN_GSEA, "hemocyte vs ASW-BTN")
     gsea_volcano(heme_BTN_GSEA, "hemocyte vs BTN")
     gsea_volcano(notheme_BTN_GSEA, "non-hemocyte tissue vs BTN")
-    gsea_volcano(USA_vs_PEI_BTN_GSEA, "USA BTN vs PEI BTN")
-    gsea_volcano(USA_vs_PEI_heme_GSEA, "USA heme vs PEI heme")
+    gsea_volcano(USA_vs_PEI_BTN_GSEA, "PEI BTN vs USA BTN")
+    gsea_volcano(USA_vs_PEI_heme_GSEA, "PEI heme vs USA heme")
     gsea_volcano(heme_vs_ASWheme_GSEA, "ASW-treated heme vs untreated heme")
     dev.off()
 

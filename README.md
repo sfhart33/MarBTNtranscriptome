@@ -82,3 +82,12 @@ Warning: STAR-Fusion can take a LONG time to run for all samples
 	make fusion
 ```
 
+Alternatively, simply use outputs we have already included on github to save time by running the following
+```
+cp -i ./inputs/star_fusion $OUTPUT_FOLDER/star_fusion
+```
+
+## To analyze the effect of unstable genome on gene expression
+```
+make genome_effects
+```
