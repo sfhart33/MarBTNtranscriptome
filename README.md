@@ -91,3 +91,14 @@ cp -i ./inputs/star_fusion $OUTPUT_FOLDER/star_fusion
 ```
 make genome_effects
 ```
+
+# STILL TO DO - USE MT SNPS TO CONFIRM PEI BTN MATCHES WGS PEI SUB-LINEAGE
+
+notes in ./scripts/mt_snvs.txt
+
+* Use STAR to align RNA reads to mt genome
+* Call SNPs
+  * Previously checked manually in IGV
+* Compare to USA/PEI SNPS FROM GENOME PAPER
+  * /ssd3/Mar_genome_analysis/bwa_mapping/mito/all_samples/somatypus/Somatypus_SNVs_final.counts
+* Use SNP ratios as rough proxy for purity too

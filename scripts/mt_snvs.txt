@@ -1,0 +1,125 @@
+# These are just notes, not meant to be run
+# From here: C:\Users\shart\Metzger Lab Dropbox\Sam_data\Mya_genome\RNAseq\RNAseq_STAR_alignment.sh
+
+###### align to mtgenome
+
+# correct name to match fasta file
+        cd /ssd3/Mar_genome_analysis/genomes/mito
+        awk ' $1 !~ /^#/ {print "NC_024738", $2, $3, $4, $5, $6, $7, $8, $9}' OFS="\t" mt_genome.gff3 > mt_genome.gff
+        awk ' $3 ~ "gene" {split($9, names, ";" );
+                                        split(names[3], id, "=" );
+                                        genecol = "gene_id " "\x22" id[2] "\x22" "; transcript_id " "\x22" id[2] "\x22" ";";
+                                        print "NC_024738", $2, "exon", $4, $5, $6, $7, $8, genecol
+                                        } ' OFS="\t" mt_genome.gff3 > mt_genome.gtf
+        # make file that is only the genes (remove tRNA) = mt_genome_genes_only.gtf
+# GENERATE mtgenome index
+module load star
+STAR \
+        --runThreadN 50 \
+        --runMode genomeGenerate \
+        --genomeDir /ssd3/RNAseq/STAR_mtgenome \
+        --genomeFastaFiles /ssd3/Mar_genome_analysis/genomes/mito/mt_genome.fasta \
+        --sjdbGTFfile /ssd3/Mar_genome_analysis/genomes/mito/mt_genome_genes_only.gtf \
+        --sjdbGTFtagExonParentTranscript Parent \
+        --genomeSAindexNbases 6
+
+# run STAR for mtgenome TEST
+        # BTN_RNA=/ssd3/Mar_genome_analysis/RNAseq
+        # STAR \
+        #         --runThreadN 50 \
+        #         --genomeDir /ssd3/RNAseq/STAR_mtgenome \
+        #         --readFilesIn $BTN_RNA/SH-1_R1_001.fastq.gz $BTN_RNA/SH-1_R2_001.fastq.gz \
+        #         --outFileNamePrefix  /ssd3/RNAseq/STAR_mtgenome_output/SH-1_ \
+        #         --readFilesCommand zcat \
+        #         --quantMode GeneCounts \
+        #         --outSAMtype None
+# run STAR for mtgenome
+        BTN_RNA=/ssd3/Mar_genome_analysis/RNAseq
+        BTN_RNA_SAMPLES="SH-1 SH-2 SH-3 SH-4"
+        TISSUE_RNA=/ssd2/Trinity/All_samples_seperate
+        TISSUE_RNA_SAMPLES="1-mantle 2-foot 3-siphon 5-muscle 6-gills 7-hemocytes"
+        NEW_RNASEQ=/ssd3/RNAseq/seq
+        cd $NEW_RNASEQ
+        NEW_SAMPLES=$(ls *R1_001.fastq.gz | awk '{split($0,name,"_R1"); print name[1]}')
+        cd /ssd3/RNAseq       
+
+        cd /ssd3/RNAseq
+        for sample in $BTN_RNA_SAMPLES
+        do  
+            STAR \
+                --runThreadN 10 \
+                --genomeDir /ssd3/RNAseq/STAR_mtgenome \
+                --readFilesIn $BTN_RNA/$sample"_R1_001.fastq.gz" $BTN_RNA/$sample"_R2_001.fastq.gz" \
+                --outFileNamePrefix  /ssd3/RNAseq/STAR_mtgenome_output/$sample"_" \
+                --readFilesCommand zcat \
+                --quantMode GeneCounts \
+                --outSAMtype None &
+        done
+
+        for sample in $TISSUE_RNA_SAMPLES
+        do  
+            STAR \
+                --runThreadN 10 \
+                --genomeDir /ssd3/RNAseq/STAR_mtgenome \
+                --readFilesIn $TISSUE_RNA/"MELC-2E11-"$sample"_R1_001.fastq.gz" $TISSUE_RNA/"MELC-2E11-"$sample"_R2_001.fastq.gz" \
+                --outFileNamePrefix  /ssd3/RNAseq/STAR_mtgenome_output/$sample"_" \
+                --readFilesCommand zcat \
+                --quantMode GeneCounts \
+                --outSAMtype None &
+        done
+        wait
+
+        for sample in $NEW_SAMPLES
+        do  
+            STAR \
+                --runThreadN 5 \
+                --genomeDir /ssd3/RNAseq/STAR_mtgenome \
+                --readFilesIn $NEW_RNASEQ/$sample"_R1_001.fastq.gz" $NEW_RNASEQ/$sample"_R2_001.fastq.gz" \
+                --outFileNamePrefix  /ssd3/RNAseq/STAR_mtgenome_output/$sample"_" \
+                --readFilesCommand zcat \
+                --quantMode GeneCounts \
+                --outSAMtype None &
+        done
+        wait
+
+cd /ssd3/RNAseq/STAR_mtgenome_output
+ls *ReadsPerGene.out.tab | awk '{split($0,name,"_ReadsPerGene"); print name[1]}' > samples_list.txt
+
+# Re-run and keep for BTN to check snps -> USA
+        cd /ssd3/RNAseq
+        SAMPLES="SH-1 SH-2"
+        for sample in $SAMPLES
+        do  
+            STAR \
+                --runThreadN 10 \
+                --genomeDir /ssd3/RNAseq/STAR_mtgenome \
+                --readFilesIn $BTN_RNA/$sample"_R1_001.fastq.gz" $BTN_RNA/$sample"_R2_001.fastq.gz" \
+                --outFileNamePrefix  /ssd3/Mar_genome_analysis/RNAseq/paper_revisions/$sample"_" \
+                --readFilesCommand zcat \
+                --quantMode GeneCounts  &
+        done
+        SAMPLES="01-FFM-28E5 02-FFM-28E6 03-FFM-28E7"
+        for sample in $SAMPLES 
+        do  
+            STAR \
+                --runThreadN 10 \
+                --genomeDir /ssd3/RNAseq/STAR_mtgenome \
+                --readFilesIn $NEW_RNASEQ/$sample"_R1_001.fastq.gz" $NEW_RNASEQ/$sample"_R2_001.fastq.gz" \
+                --outFileNamePrefix  /ssd3/Mar_genome_analysis/RNAseq/paper_revisions/$sample"_" \
+                --readFilesCommand zcat \
+                --quantMode GeneCounts  &
+        done
+        wait
+
+# keep only mapping reads to save space - check in IGV for lineage-specific SNVs:
+        SAMPLES="01-FFM-28E5 02-FFM-28E6 03-FFM-28E7 SH-1 SH-2"
+        cd /ssd3/Mar_genome_analysis/RNAseq/paper_revisions
+        for sample in $SAMPLES 
+        do
+                # samtools view -F 4 -h -@ 20 -O BAM $sample"_Aligned.out.sam" > $sample"_Aligned.out.mapped.bam" &
+                # samtools sort -@ 10 $sample"_Aligned.out.mapped.bam" > $sample"_Aligned.out.mapped.sorted.bam" &
+                samtools index -@ 10 $sample"_Aligned.out.mapped.sorted.bam"
+                # rm $sample"_Aligned.out.sam"
+        done
+        wait
+
