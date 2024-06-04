@@ -6,7 +6,8 @@ Samuel Hart, University of Washington Molecular and Cellular Biology PhD program
 
 Follow the steps below to recreate the data analysis from the [Metzger lab](https://pnri.org/metzger-lab/)'s publication on the transcriptomics of transmissible cancer in soft-shell clams. If you use any of these methods or data for your own research, please use the following citation:
 
-* *(In progress... preprint coming fall 2023)*
+* *(In progress... preprint coming soon)*
+* In the meantime, preliminary results and discussion can be found in the second chapter of my [dissertation](https://digital.lib.washington.edu/researchworks/handle/1773/50503)
 
 <br/><br/>
 
