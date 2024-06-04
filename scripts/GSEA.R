@@ -20,7 +20,7 @@
     load("heme_vs_ASWbtn_results.rda") # heme_BTN: negative is higher in BTN
     load("heme_vs_btn_results.rda") # notheme_BTN: negative is higher in BTN
     load("notheme_vs_btn_results.rda") # heme_ASW_BTN: negative is higher in BTN-ASW
-    load("UvsP_BTN_results.rda") # UvsP_BTN: negative is higher in PEI
+#    load("UvsP_BTN_results.rda") # UvsP_BTN: negative is higher in PEI
     load("UvsP_heme_results.rda") # UvsP_heme: negative is higher in PEI
     load("heme_vs_aswheme_results.rda") # heme_ASWheme: negative is higher in untreated
 
@@ -64,14 +64,14 @@
             dplyr::select(gene, uniprot, padj, baseMean,
                           stat, log2FoldChange, description)
         # print top100 lists
-        filter(input_annotated, stat < 0, padj < 0.05/nrow(input_annotated)) %>%
+        filter(input_annotated, stat < 0, padj < 0.05) %>% #/nrow(input_annotated)) %>%
             arrange(padj) %>%
-            head(n=100) %>%
+#            head(n=100) %>%
             write.table(paste0("top100_genes_upreg_in_",comparison,".tsv"),
                         sep="\t", row.names = FALSE, quote = FALSE)
-        filter(input_annotated, stat > 0, padj < 0.05/nrow(input_annotated)) %>%
+        filter(input_annotated, stat > 0, padj < 0.05) %>% #/nrow(input_annotated)) %>%
             arrange(padj)%>%
-            head(n=100) %>%
+#            head(n=100) %>%
             write.table(paste0("top100_genes_dnreg_in_",comparison,".tsv"),
                         sep="\t", row.names = FALSE, quote = FALSE)
     }
@@ -80,7 +80,7 @@
     print_top100(notheme_BTN, "BTN_vs_tissue")
     print_top100(ASW_BTN, "ASW_vs_BTN")
     print_top100(heme_ASW_BTN, "ASW_vs_heme")
-    print_top100(UvsP_BTN, "USA_vs_PEI_BTN")
+#    print_top100(UvsP_BTN, "USA_vs_PEI_BTN")
     print_top100(UvsP_heme, "USA_vs_PEI_heme")
     print_top100(heme_ASWheme, "heme_vs_ASWheme")
 
@@ -106,15 +106,15 @@
                                        #nproc = 1) # Changed to try and address issue running for heme_BTN
         gsea_result <- left_join(gsea_result, gs_to_go)
     # print top100 lists
-        filter(gsea_result, NES > 0) %>%
+        filter(gsea_result, NES > 0, padj < 0.05) %>%
             arrange(padj) %>%
-            head(n=100) %>%
+#            head(n=100) %>%
             dplyr::select(-leadingEdge) %>%
             write.table(paste0("top100_genesets_upreg_in_",comparison,".tsv"),
                         sep="\t", row.names = FALSE, quote = FALSE)
-        filter(gsea_result, NES < 0) %>%
+        filter(gsea_result, NES < 0, padj < 0.05) %>%
             arrange(padj)%>%
-            head(n=100) %>%
+#            head(n=100) %>%
             dplyr::select(-leadingEdge) %>%
             write.table(paste0("top100_genesets_dnreg_in_",comparison,".tsv"),
                         sep="\t", row.names = FALSE, quote = FALSE)
@@ -129,8 +129,8 @@
     heme_BTN_GSEA <- rank_and_GSEA(heme_BTN, "BTN_vs_heme")
     save(heme_BTN_GSEA, file = "heme_BTN_GSEA.rda")
 
-    USA_vs_PEI_BTN_GSEA <- rank_and_GSEA(UvsP_BTN, "USA_vs_PEI_BTN")
-    save(USA_vs_PEI_BTN_GSEA, file = "USA_vs_PEI_BTN_GSEA.rda")
+#    USA_vs_PEI_BTN_GSEA <- rank_and_GSEA(UvsP_BTN, "USA_vs_PEI_BTN")
+#    save(USA_vs_PEI_BTN_GSEA, file = "USA_vs_PEI_BTN_GSEA.rda")
     USA_vs_PEI_heme_GSEA <- rank_and_GSEA(UvsP_heme, "USA_vs_PEI_heme")
     save(USA_vs_PEI_heme_GSEA, file = "USA_vs_PEI_heme_GSEA.rda")
     heme_vs_ASWheme_GSEA <- rank_and_GSEA(heme_ASWheme, "heme_vs_ASWheme")

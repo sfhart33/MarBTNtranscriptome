@@ -22,10 +22,10 @@
     load("notheme_BTN_GSEA.rda")
 
     #new 
-    load("UvsP_BTN_results.rda") # UvsP_BTN: negative is higher in PEI
+#    load("UvsP_BTN_results.rda") # UvsP_BTN: negative is higher in PEI
     load("UvsP_heme_results.rda") # UvsP_heme: negative is higher in PEI
     load("heme_vs_aswheme_results.rda") # heme_ASWheme: negative is higher in untreated
-    load("USA_vs_PEI_BTN_GSEA.rda")
+#    load("USA_vs_PEI_BTN_GSEA.rda")
     load("USA_vs_PEI_heme_GSEA.rda")
     load("heme_vs_ASWheme_GSEA.rda")
 
@@ -63,7 +63,7 @@
     deseq_volcano(heme_BTN, "hemocytes vs BTN")
     deseq_volcano(notheme_BTN, "non-hemocyte tissue vs BTN")
 
-    deseq_volcano(UvsP_BTN, "PEI BTN vs USA BTN")
+#    deseq_volcano(UvsP_BTN, "PEI BTN vs USA BTN")
     deseq_volcano(UvsP_heme, "PEI heme vs USA heme")
     deseq_volcano(heme_ASWheme, "ASW-treated heme vs untreated heme")
     dev.off()
@@ -97,7 +97,7 @@
     gsea_volcano(heme_ASW_BTN_GSEA, "hemocyte vs ASW-BTN")
     gsea_volcano(heme_BTN_GSEA, "hemocyte vs BTN")
     gsea_volcano(notheme_BTN_GSEA, "non-hemocyte tissue vs BTN")
-    gsea_volcano(USA_vs_PEI_BTN_GSEA, "PEI BTN vs USA BTN")
+#    gsea_volcano(USA_vs_PEI_BTN_GSEA, "PEI BTN vs USA BTN")
     gsea_volcano(USA_vs_PEI_heme_GSEA, "PEI heme vs USA heme")
     gsea_volcano(heme_vs_ASWheme_GSEA, "ASW-treated heme vs untreated heme")
     dev.off()

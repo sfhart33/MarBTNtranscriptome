@@ -132,15 +132,15 @@
             #############################
             #### ADD PEI COMPARISONS ####
             #############################
-    # Deseq on BTN USA vs PEI
-        include <- (samples_data$tissue == "BTN")
-        deseq_UvsP_BTN <- DESeqDataSetFromMatrix(countData = rnaseq[,include],
-                                    colData = samples_data[include,],
-                                    design = ~ location) %>%
-            DESeq()
-        save(deseq_UvsP_BTN, file = "deseq_UvsP_BTN.rda")
-        UvsP_BTN <- results(deseq_UvsP_BTN, name="location_USA_vs_PEI")
-        save(UvsP_BTN, file = "UvsP_BTN_results.rda")
+#    # Deseq on BTN USA vs PEI
+#        include <- (samples_data$tissue == "BTN")
+#        deseq_UvsP_BTN <- DESeqDataSetFromMatrix(countData = rnaseq[,include],
+#                                    colData = samples_data[include,],
+#                                    design = ~ location) %>%
+#            DESeq()
+#        save(deseq_UvsP_BTN, file = "deseq_UvsP_BTN.rda")
+#        UvsP_BTN <- results(deseq_UvsP_BTN, name="location_USA_vs_PEI")
+#        save(UvsP_BTN, file = "UvsP_BTN_results.rda")
 
     # Deseq on healthy USA vs PEI
         include <- (samples_data$tissue == "heme")

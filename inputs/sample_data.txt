@@ -33,4 +33,3 @@ PSH-B7	HEL_8	heme	heme	not	not	not	not	not	PEI
 PSH-A2-ASW	HEL_6	heme_ASW	heme_ASW	heme_ASW	heme_ASW	heme_ASW	heme_ASW	heme_ASW	PEI
 PSH-A6-ASW	HEL_7	heme_ASW	heme_ASW	heme_ASW	heme_ASW	heme_ASW	heme_ASW	heme_ASW	PEI
 PSH-B7-ASW	HEL_8	heme_ASW	heme_ASW	heme_ASW	heme_ASW	heme_ASW	heme_ASW	heme_ASW	PEI
-PSH-A12-BTN	BTN_6	BTN	BTN	BTN	BTN	BTN	BTN	BTN	PEI
