@@ -240,6 +240,7 @@ pdf(paste0(output_folder,"/plots/cn_exp_plot.pdf"))
         geom_boxplot(outlier.shape = NA) +
         ylim(-12,12) +
         ylab("log2(foldchange) in BTN vs hemocytes")+
+        xlab("Genomic copy number")+
             theme_classic() +
             theme(axis.text=element_text(size=12,face="bold"),
                     axis.title=element_text(size=16,face="bold"),

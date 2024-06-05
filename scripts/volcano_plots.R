@@ -120,7 +120,10 @@
         inner_join(directional_pvalue(heme_ASW_BTN, "heme_vs_ASW")) %>%
         inner_join(directional_pvalue(heme_BTN, "heme_vs_BTN")) %>%
         inner_join(directional_pvalue(notheme_BTN, "tissue_vs_BTN")) %>%
-        inner_join(directional_pvalue(heme_ASWheme, "ASWheme_vs_heme"))
+        inner_join(directional_pvalue(heme_ASWheme, "ASWheme_vs_heme"))%>%
+	mutate(ASWheme_vs_heme_L2FC = -ASWheme_vs_heme_L2FC, 
+		ASWheme_vs_heme_padj = -ASWheme_vs_heme_padj)
+
     # head(compare_all_genes)
 
     # combine data from GSEA runs with directional p-values
@@ -139,7 +142,9 @@
         inner_join(directional_pvalue_GSEA(heme_ASW_BTN_GSEA, "heme_vs_ASW")) %>%
         inner_join(directional_pvalue_GSEA(heme_BTN_GSEA, "heme_vs_BTN")) %>%
         inner_join(directional_pvalue_GSEA(notheme_BTN_GSEA, "tissue_vs_BTN")) %>%
-        inner_join(directional_pvalue_GSEA(heme_vs_ASWheme_GSEA,  "ASWheme_vs_heme"))
+        inner_join(directional_pvalue_GSEA(heme_vs_ASWheme_GSEA,  "ASWheme_vs_heme")) %>%
+	mutate(ASWheme_vs_heme_NES = -ASWheme_vs_heme_NES, 
+		ASWheme_vs_heme_padj = -ASWheme_vs_heme_padj)
     # head(compare_all_gene_sets)
 
     # Function to make comparison plots
@@ -179,7 +184,7 @@
     directional_pvalue_plots("heme_vs_BTN", "heme_vs_ASW", "BTN vs hemocytes", "ASW-BTN vs hemocytes", "deseq")
     directional_pvalue_plots("BTN_vs_ASW", "heme_vs_ASW", "ASW-BTN vs BTN", "ASW-BTN vs hemocytes", "deseq")
     directional_pvalue_plots("BTN_vs_ASW", "heme_vs_BTN", "ASW-BTN vs BTN", "BTN vs hemocytes", "deseq")
-    directional_pvalue_plots("BTN_vs_ASW", "ASWheme_vs_heme", "ASW-BTN vs BTN", "hemocytes vs ASW-heme", "deseq")
+    directional_pvalue_plots("BTN_vs_ASW", "ASWheme_vs_heme", "ASW-BTN vs BTN", "ASW-heme vs hemocytes", "deseq")
     dev.off()
     # GSEA gene set plots
     pdf("comparison_plots_gene_sets.pdf")
@@ -187,5 +192,5 @@
     directional_pvalue_plots("heme_vs_BTN", "heme_vs_ASW", "BTN vs hemocytes", "ASW-BTN vs hemocytes", "gsea")
     directional_pvalue_plots("BTN_vs_ASW", "heme_vs_ASW", "ASW-BTN vs BTN", "ASW-BTN vs hemocytes", "gsea")
     directional_pvalue_plots("BTN_vs_ASW", "heme_vs_BTN", "ASW-BTN vs BTN", "BTN vs hemocytes", "gsea")
-    directional_pvalue_plots("BTN_vs_ASW", "ASWheme_vs_heme", "ASW-BTN vs BTN", "hemocytes vs ASW-heme", "gsea")
+    directional_pvalue_plots("BTN_vs_ASW", "ASWheme_vs_heme", "ASW-BTN vs BTN", "ASW-heme vs hemocytes", "gsea")
     dev.off()
