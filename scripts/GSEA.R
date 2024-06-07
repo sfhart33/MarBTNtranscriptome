@@ -139,3 +139,92 @@
     
     # If GSEA enrichment plots are desired use plotEnrichment function:
     # https://bioconductor.org/packages/release/bioc/vignettes/fgsea/inst/doc/fgsea-tutorial.html
+
+#### NEW ADDED June 2024 ####
+
+# Print out top LFC hits
+    top_genes <- as.data.frame(heme_BTN) %>%
+        rownames_to_column(var = "gene") %>%
+        left_join(gene_translations) %>%
+        left_join(uniprot_translations) %>%
+        dplyr::select(gene, uniprot, padj, baseMean,
+                        stat, log2FoldChange, description) %>%
+        arrange(padj)
+
+    top_genes %>%
+        arrange(log2FoldChange) %>%
+            head(n=100) %>%
+            write.table(paste0(output_folder,"/plots/top100_LFC_genes_upreg_in_BTN_vs_heme.tsv"),
+                        sep="\t", row.names = FALSE, quote = FALSE)
+    top_genes %>%
+        arrange(-log2FoldChange) %>%
+            head(n=100) %>%
+            write.table(paste0(output_folder,"/plots/top100_LFC_genes_dnreg_in_BTN_vs_heme.tsv"),
+                        sep="\t", row.names = FALSE, quote = FALSE)
+
+# For supp tables - merge BTNxASW and hemexASW
+    # genes
+        heme_asw <- as.data.frame(heme_ASWheme) %>%
+            rownames_to_column(var = "gene") %>%
+            mutate(heme_LFC = -log2FoldChange) %>% # since heme-hemeASW comparison is flipped
+            select(gene, heme_LFC, heme_padj = padj)
+        asw_treatments <- as.data.frame(ASW_BTN) %>%
+            rownames_to_column(var = "gene") %>%
+            left_join(gene_translations) %>%
+            left_join(uniprot_translations) %>%
+            left_join(heme_asw) %>%
+            dplyr::select(gene, uniprot, description, baseMean, stat, padj, 
+                          log2FoldChange, heme_LFC, heme_padj)
+        # print top100 lists
+        setwd("/ssd3/RNAseq/outputs/data_tables")
+        filter(asw_treatments, stat < 0, padj < 0.05) %>% #/nrow(input_annotated)) %>%
+            arrange(padj) %>%
+            head(n=100) %>%
+            write.table("top100_genes_upreg_in_ASW_vs_BTN_plusheme.tsv",
+                        sep="\t", row.names = FALSE, quote = FALSE)
+        filter(asw_treatments, stat > 0, padj < 0.05) %>% #/nrow(input_annotated)) %>%
+            arrange(padj)%>%
+            head(n=100) %>%
+            write.table("top100_genes_dnreg_in_ASW_vs_BTN_plusheme.tsv",
+                        sep="\t", row.names = FALSE, quote = FALSE)
+    #gene sets
+    heme_asw2 <- heme_vs_ASWheme_GSEA %>%
+            mutate(heme_ES = -ES) %>% # since heme-hemeASW comparison is flipped
+            select(pathway, heme_ES, heme_padj = padj) 
+
+    asw_output <- left_join(ASW_BTN_GSEA, heme_asw2) %>% 
+            arrange(padj) %>%
+            dplyr::select(-leadingEdge)
+
+        filter(asw_output, NES > 0, padj < 0.05) %>%
+            arrange(padj) %>%
+            head(n=100) %>%
+            write.table("top100_genesets_upreg_in_ASW_vs_BTN_plusheme.tsv",
+                        sep="\t", row.names = FALSE, quote = FALSE)
+        filter(asw_output,NES < 0, padj < 0.05) %>%
+            arrange(padj)%>%
+            head(n=100) %>%
+            write.table("top100_genesets_dnreg_in_ASW_vs_BTN_plusheme.tsv",
+                        sep="\t", row.names = FALSE, quote = FALSE)
+
+# Compare to mussel results and print top 100
+    mussel <- read.delim("./inputs/burioli_mussel_genes.txt",
+                         sep = "\t",
+                         head = TRUE) %>%
+        dplyr::select(uniprot = Gene.ID, Description, log2FC, FDR)
+
+    mussel2 <- inner_join(top_genes, mussel) %>%
+        mutate(mya_lfc = -log2FoldChange,
+               mya_p_dir = case_when(mya_lfc > 0 ~ -log10(padj), mya_lfc <= 0 ~ log10(padj)),
+               mtr_p_dir = case_when(log2FC > 0 ~ -log10(FDR), log2FC <= 0 ~ log10(FDR)))
+    mussel3 <- filter(mussel2, padj < 0.05)
+    upup <- mussel3 %>% filter(log2FC > 0, mya_lfc > 0) %>% nrow() # 373 both up
+    dndn <- mussel3 %>% filter(log2FC < 0, mya_lfc < 0) %>% nrow() # 569 both dn
+    updn <- mussel3 %>% filter(log2FC > 0, mya_lfc < 0) %>% nrow() # 286 mussel up, mya dn
+    dnup <- mussel3 %>% filter(log2FC < 0, mya_lfc > 0) %>% nrow() # 270 mussel dn, mya up
+    mussel3 %>%
+        mutate(agg_fold_change = mya_lfc * log2FC) %>%
+        arrange(desc(agg_fold_change)) %>%
+        head(100) %>%
+            write.table(paste0(output_folder,"/plots/top_genes_both_mussels_mya2.tsv"),
+                        sep="\t", row.names = FALSE, quote = FALSE)

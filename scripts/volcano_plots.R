@@ -122,7 +122,7 @@
         inner_join(directional_pvalue(notheme_BTN, "tissue_vs_BTN")) %>%
         inner_join(directional_pvalue(heme_ASWheme, "ASWheme_vs_heme"))%>%
 	mutate(ASWheme_vs_heme_L2FC = -ASWheme_vs_heme_L2FC, 
-		ASWheme_vs_heme_padj = -ASWheme_vs_heme_padj)
+		ASWheme_vs_heme_padj = -ASWheme_vs_heme_padj) # flip for the correct orientation for plot
 
     # head(compare_all_genes)
 
@@ -144,7 +144,7 @@
         inner_join(directional_pvalue_GSEA(notheme_BTN_GSEA, "tissue_vs_BTN")) %>%
         inner_join(directional_pvalue_GSEA(heme_vs_ASWheme_GSEA,  "ASWheme_vs_heme")) %>%
 	mutate(ASWheme_vs_heme_NES = -ASWheme_vs_heme_NES, 
-		ASWheme_vs_heme_padj = -ASWheme_vs_heme_padj)
+		ASWheme_vs_heme_padj = -ASWheme_vs_heme_padj) # flip for the correct orientation for plot
     # head(compare_all_gene_sets)
 
     # Function to make comparison plots
