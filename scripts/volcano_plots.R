@@ -57,8 +57,17 @@
                     legend.title = element_text("none")
                 )
     }
+
+# filter ASW result for only BTN-specific hits    
+	asw_heme_notsig <- heme_ASWheme %>%
+		as.data.frame() %>%
+		filter(!(padj < 0.05)) %>%
+		rownames() 
+	asw_heme_notsig_BTN <- as.data.frame(ASW_BTN)[asw_heme_notsig,]
+
     pdf("volcano_plots_genes.pdf")
     deseq_volcano(ASW_BTN, "no treatment BTN vs ASW-BTN")
+    deseq_volcano(asw_heme_notsig_BTN, "no treatment BTN vs ASW-BTN")
     deseq_volcano(heme_ASW_BTN, "hemocytes vs ASW-BTN")
     deseq_volcano(heme_BTN, "hemocytes vs BTN")
     deseq_volcano(notheme_BTN, "non-hemocyte tissue vs BTN")
@@ -92,8 +101,17 @@
                     legend.title = element_text("none")
                 )
     }
+
+# filter ASW result for only BTN-specific hits    
+	asw_heme_notsig_GSEA <- heme_vs_ASWheme_GSEA %>%
+		filter(!(padj < 0.05)) %>%
+		pull(pathway)
+	asw_heme_notsig_BTN_GSEA <- ASW_BTN_GSEA %>%
+		filter(pathway %in% asw_heme_notsig_GSEA)
+
     pdf("volcano_plots_gene_sets.pdf")
     gsea_volcano(ASW_BTN_GSEA, "no treatment vs ASW")
+    gsea_volcano(asw_heme_notsig_BTN_GSEA, "no treatment vs ASW")
     gsea_volcano(heme_ASW_BTN_GSEA, "hemocyte vs ASW-BTN")
     gsea_volcano(heme_BTN_GSEA, "hemocyte vs BTN")
     gsea_volcano(notheme_BTN_GSEA, "non-hemocyte tissue vs BTN")
@@ -193,4 +211,60 @@
     directional_pvalue_plots("BTN_vs_ASW", "heme_vs_ASW", "ASW-BTN vs BTN", "ASW-BTN vs hemocytes", "gsea")
     directional_pvalue_plots("BTN_vs_ASW", "heme_vs_BTN", "ASW-BTN vs BTN", "BTN vs hemocytes", "gsea")
     directional_pvalue_plots("BTN_vs_ASW", "ASWheme_vs_heme", "ASW-BTN vs BTN", "ASW-heme vs hemocytes", "gsea")
+    dev.off()
+
+# 
+    pdf("ASW_hits_minus_heme_hits.pdf")
+    deseq_volcano(asw_heme_notsig_BTN, "no treatment BTN vs ASW-BTN")
+	input <- asw_heme_notsig_BTN
+	comparison <- "no treatment BTN vs ASW-BTN"
+	sig_limit <- 0.05/nrow(as.data.frame(input))
+	# sig_limit <- 0.05
+        as.data.frame(input) %>%
+            filter(padj < sig_limit) %>%
+            ggplot(aes(x = -log2FoldChange, y = -log10(padj))) +
+                geom_point(data = filter(as.data.frame(input), padj > sig_limit),
+                            aes(x = -log2FoldChange,
+                            y = -log10(padj)),
+                            color = "grey") +
+                geom_point() +
+		ylim(0,300) +
+                geom_hline(yintercept =-log10(sig_limit)) +
+                xlab(paste("Log2 Fold Change (<-",comparison,"->)")) +
+                ylab("-Log10 adj p-value") +
+                theme_classic() +
+                theme(
+                    aspect.ratio = 0.5,
+                    plot.title = element_text(hjust = 0.5),
+                    axis.text = element_text(size = 14, face = "bold"),
+                    axis.title = element_text(size = 16, face = "bold"),
+                    text = element_text(size = 16, face = "bold"),
+                    legend.title = element_text("none")
+                )
+
+    gsea_volcano(asw_heme_notsig_BTN_GSEA, "no treatment vs ASW")
+	input <- asw_heme_notsig_BTN_GSEA
+	comparison <- "no treatment vs ASW"
+	sig_limit <- 0.05
+        input %>%
+            filter(padj < sig_limit) %>%
+            ggplot(aes(x = ES, y = -log10(padj))) +
+                geom_point(data = filter(input, padj > sig_limit),
+                            aes(x = ES,
+                            y = -log10(padj)),
+                            color = "grey") +
+                geom_point() +
+                geom_hline(yintercept =-log10(sig_limit)) +
+                xlab(paste("Enrichment Score (<-",comparison,"->)")) +
+                ylab("-Log10 adj p-value") +
+		ylim(0,8) +
+                theme_classic() +
+                theme(
+                    aspect.ratio = 0.5,
+                    plot.title = element_text(hjust = 0.5),
+                    axis.text = element_text(size = 14, face = "bold"),
+                    axis.title = element_text(size = 16, face = "bold"),
+                    text = element_text(size = 16, face = "bold"),
+                    legend.title = element_text("none")
+                )
     dev.off()

@@ -141,6 +141,36 @@
     # https://bioconductor.org/packages/release/bioc/vignettes/fgsea/inst/doc/fgsea-tutorial.html
 
 #### NEW ADDED June 2024 ####
+# filter ASW result for only BTN-specific hits    
+	asw_heme_notsig <- heme_ASWheme %>%
+		as.data.frame() %>%
+		filter(!(padj < 0.05)) %>%
+		rownames() 
+	asw_heme_notsig_BTN <- as.data.frame(ASW_BTN)[asw_heme_notsig,]
+    print_top100(asw_heme_notsig_BTN, "ASW_vs_BTN_minus_heme_hits")
+
+# same for GSEA
+	asw_heme_notsig_GSEA <- heme_vs_ASWheme_GSEA %>%
+		filter(!(padj < 0.05)) %>%
+		pull(pathway)
+	asw_heme_notsig_BTN_GSEA <- ASW_BTN_GSEA %>%
+		filter(pathway %in% asw_heme_notsig_GSEA)
+
+gsea_result <- asw_heme_notsig_BTN_GSEA
+comparison <- "ASW_vs_BTN_minus_heme_hits"
+        filter(gsea_result, NES > 0, padj < 0.05) %>%
+            arrange(padj) %>%
+            dplyr::select(-leadingEdge) %>%
+            write.table(paste0("top100_genesets_upreg_in_",comparison,".tsv"),
+                        sep="\t", row.names = FALSE, quote = FALSE)
+        filter(gsea_result, NES < 0, padj < 0.05) %>%
+            arrange(padj)%>%
+            dplyr::select(-leadingEdge) %>%
+            write.table(paste0("top100_genesets_dnreg_in_",comparison,".tsv"),
+                        sep="\t", row.names = FALSE, quote = FALSE)
+
+
+
 
 # Print out top LFC hits
     top_genes <- as.data.frame(heme_BTN) %>%
