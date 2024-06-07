@@ -272,8 +272,9 @@ dev.off()
             U_dn = ifelse(u_padj < 0.05 & u_lfc > 0, TRUE, FALSE),
 #            P_up = ifelse(p_padj < 0.05 & p_lfc < 0, TRUE, FALSE),
 #            P_dn = ifelse(p_padj < 0.05 & p_lfc > 0, TRUE, FALSE),
-            PEI = ifelse(group %in% c("allCnoH","allPEI"), TRUE, FALSE),
-            USA = ifelse(group %in% c("allCnoH","allUSA"), TRUE, FALSE))
+#            PEI = ifelse(group %in% c("allCnoH","allPEI"), TRUE, FALSE),
+            USA = ifelse(group %in% c("allCnoH","allUSA"), "Insertion present", "Control"),
+            inserted2 = ifelse(inserted == "2kbup", "Within 2kB upstream", "In gene region"))
 
 # Count up/down regulated genes
     steamer_upstream_USA <- steamer_ins %>%
@@ -328,73 +329,23 @@ dev.off()
 #### NEW boxplot of LFC based on steamer insertion status
 
 pdf(paste0(output_folder,"/plots/steamer_exp_plot.pdf"))
-    ggplot(steamer_ins, aes(inserted, -u_lfc, fill = USA)) +
+    ggplot(steamer_ins, aes(inserted2, -u_lfc, fill = USA)) +
         geom_hline(yintercept = 0) +  
         geom_boxplot(outlier.shape = NA) +
-        #ylim(-12,12) +
+	geom_point(aes(fill = USA), position = position_jitterdodge(jitter.width = 0.2)) +
+        ylim(-12,12) +
+	#scale_fill_manual(values = c("green","orange")) +
         ylab("log2(foldchange) in BTN vs hemocytes")+
-	xlab("Present in samples")+
+	xlab("Steamer insertion location")+
             theme_classic() +
             theme(axis.text=element_text(size=12,face="bold"),
                     axis.title=element_text(size=16,face="bold"),
                     text=element_text(size=18,face="bold"),
                     legend.title = element_blank())
-    ggplot(steamer_ins, aes(inserted, -u_lfc, fill = USA, color = strand)) +
-        geom_hline(yintercept = 0) +  
-        geom_boxplot(outlier.shape = NA) +
-	scale_fill_manual(values = c("green","orange")) +
-        #ylim(-12,12) +
-        ylab("log2(foldchange) in BTN vs hemocytes")+
-	xlab("Present in samples")+
-            theme_classic() +
-            theme(axis.text=element_text(size=12,face="bold"),
-                    axis.title=element_text(size=16,face="bold"),
-                    text=element_text(size=18,face="bold"),
-                    legend.title = element_blank())
-
-    ggplot(steamer_ins, aes(inserted, -u_lfc, fill = USA)) +
-        geom_hline(yintercept = 0) +  
-        geom_violin() +
-        #ylim(-12,12)
-        ylab("log2(foldchange) in BTN vs hemocytes")+
-	xlab("Present in samples")+
-            theme_classic() +
-            theme(axis.text=element_text(size=12,face="bold"),
-                    axis.title=element_text(size=16,face="bold"),
-                    text=element_text(size=18,face="bold"),
-                    legend.title = element_blank())
-
 dev.off()
 
-t.test(filter(steamer_ins, inserted=="2kbup", USA==TRUE)[,"u_lfc"],filter(steamer_ins, inserted=="2kbup", USA==FALSE)[,"u_lfc"]) # p-value = 0.1623
-t.test(filter(steamer_ins, inserted=="2kbup", USA==TRUE)[,"u_lfc"]) # p-value = 0.01015
-t.test(filter(steamer_ins, inserted=="2kbup", USA==FALSE)[,"u_lfc"]) # p-value = 0.5117
-wilcox.test(filter(steamer_ins, inserted=="2kbup", USA==TRUE)[,"u_lfc"],filter(steamer_ins, inserted=="2kbup", USA==FALSE)[,"u_lfc"]) # p-value = 0.0384
+wilcox.test(filter(steamer_ins, inserted=="2kbup", USA=="Insertion present")[,"u_lfc"],filter(steamer_ins, inserted=="2kbup", USA=="Control")[,"u_lfc"]) # p-value = 0.0384
+wilcox.test(filter(steamer_ins, inserted=="2kbup", USA=="Insertion present")[,"u_lfc"],) # p-value = 0.003444
 
-t.test(filter(steamer_ins, inserted=="genes", USA==TRUE)[,"u_lfc"],filter(steamer_ins, inserted=="genes", USA==FALSE)[,"u_lfc"]) # p-value = 0.385
-t.test(filter(steamer_ins, inserted=="genes", USA==TRUE)[,"u_lfc"]) # p-value = 0.02075
-t.test(filter(steamer_ins, inserted=="genes", USA==FALSE)[,"u_lfc"]) # p-value = 0.06387
-wilcox.test(filter(steamer_ins, inserted=="genes", USA==TRUE)[,"u_lfc"],filter(steamer_ins, inserted=="genes", USA==FALSE)[,"u_lfc"]) # p-value = 0.2679
-
-# Print output tables
-    # Did not plot since there doesn't appear to be a significant effect of steamer with the new samples
-#    cbind(steamer_genes_USA[,1],
-#        steamer_genes_USA[,-1] + steamer_genes_PEI[,-1]) %>%
-#        mutate(
-#            up_frac = up/(up+dn),
-#            up_frac_con = up_con/(up_con+dn_con),
-#            up_frac2 = up/n,
-#            up_frac_con2 = up_con/n
-#        ) %>%
-#        write.table(paste0(output_folder,"/data_tables/steamer_ins_in_gene_effect.tsv"),
-#                    sep="\t", row.names = TRUE, quote = FALSE)
-#    cbind(ungroup(steamer_upstream_USA)[,1:2],
-#        steamer_upstream_USA[,-c(1,2)] + steamer_upstream_PEI[,-c(1,2)]) %>%
-#        mutate(
-#            up_frac = up/(up+dn),
-#            up_frac_con = up_con/(up_con+dn_con),
-#            up_frac2 = up/n,
-#            up_frac_con2 = up_con/n
-#        ) %>%
-#        write.table(paste0(output_folder,"/data_tables/steamer_ins_upstream_gene_effect.tsv"),
-#                    sep="\t", row.names = TRUE, quote = FALSE)
+wilcox.test(filter(steamer_ins, inserted=="genes", USA=="Insertion present")[,"u_lfc"],filter(steamer_ins, inserted=="genes", USA=="Control")[,"u_lfc"]) # p-value = 0.2679
+wilcox.test(filter(steamer_ins, inserted=="genes", USA=="Insertion present")[,"u_lfc"],) # p-value = 0.1512
