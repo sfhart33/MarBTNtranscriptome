@@ -168,7 +168,7 @@
 
 # plot
   pdf(paste0(output_folder,"/plots/fusion_plot.pdf"))
-        ggplot(fusion_counts_mean_adj, aes(x=type,y=mean)) +
+        fusion_plot <- ggplot(fusion_counts_mean_adj, aes(x=type,y=mean)) +
             geom_bar(position="dodge", stat="identity", fill = "#969696")+
             geom_bar(aes(x=type,y=shared),position="dodge", stat="identity", fill = "black")+
             geom_errorbar(aes(ymin=(mean-sd), ymax=(mean+sd)), width=.2,position=position_dodge(.9))+
@@ -176,12 +176,15 @@
                         aes(x=type,y=as.numeric(adj.count)),
                         position=position_dodge(.9), size=2)+
             xlab(NULL)+
-            ylab("Number of fusion transcripts\n(minus fusions in all samples)")+
+            ylab("Fusion transcript count")+
+            ylim(0,600)+
+            #ylab("Number of fusion transcripts\n(minus fusions in all samples)")+
             theme_classic() +
             theme(axis.text=element_text(size=12,face="bold"),
                     axis.title=element_text(size=16,face="bold"),
                     text=element_text(size=18,face="bold"),
                     legend.title = element_blank())
+	print(fusion_plot)
     dev.off()
 
 #########################################################################################################
@@ -235,18 +238,39 @@ setwd(output_folder)
 
 
 pdf(paste0(output_folder,"/plots/cn_exp_plot.pdf"))
-    ggplot(cn_exp, aes(cn, -log2FoldChange)) +
+    cn_plot <- ggplot(cn_exp, aes(cn, -log2FoldChange)) +
         geom_hline(yintercept = 0) +  
         geom_boxplot(outlier.shape = NA) +
         ylim(-12,12) +
-        ylab("log2(foldchange) in BTN vs hemocytes")+
+        ylab("Log2 Fold Change\n(BTN vs hemocytes)")+
         xlab("Genomic copy number")+
             theme_classic() +
             theme(axis.text=element_text(size=12,face="bold"),
                     axis.title=element_text(size=16,face="bold"),
                     text=element_text(size=18,face="bold"),
                     legend.title = element_blank())
+	print(cn_plot)
 dev.off()
+
+#stats tests
+	wilcox.test(filter(cn_exp, cn==1)[,"log2FoldChange"],) # p-value < 2.2e-16
+	wilcox.test(filter(cn_exp, cn==2)[,"log2FoldChange"],) # p-value < 2.2e-16
+	wilcox.test(filter(cn_exp, cn==3)[,"log2FoldChange"],) # p-value < 2.2e-16
+	wilcox.test(filter(cn_exp, cn==4)[,"log2FoldChange"],) # p-value = 0.0001956
+	wilcox.test(filter(cn_exp, cn==5)[,"log2FoldChange"],) # p-value = 4.353e-11
+	wilcox.test(filter(cn_exp, cn==6)[,"log2FoldChange"],) # p-value = 1.231e-09
+	wilcox.test(filter(cn_exp, cn==7)[,"log2FoldChange"],) # p-value = 0.04351
+	wilcox.test(filter(cn_exp, cn=="8plus")[,"log2FoldChange"],) # p-value = 8.665e-05
+
+	wilcox.test(filter(cn_exp, cn==1)[,"log2FoldChange"],filter(cn_exp, cn==2)[,"log2FoldChange"]) # p-value = 0.004079
+	wilcox.test(filter(cn_exp, cn==2)[,"log2FoldChange"],filter(cn_exp, cn==3)[,"log2FoldChange"]) # p-value < 2.2e-16
+	wilcox.test(filter(cn_exp, cn==3)[,"log2FoldChange"],filter(cn_exp, cn==4)[,"log2FoldChange"]) # p-value < 2.2e-16
+	wilcox.test(filter(cn_exp, cn==4)[,"log2FoldChange"],filter(cn_exp, cn==5)[,"log2FoldChange"]) # p-value = 1.64e-06
+	wilcox.test(filter(cn_exp, cn==5)[,"log2FoldChange"],filter(cn_exp, cn==6)[,"log2FoldChange"]) # p-value = 0.002568
+	wilcox.test(filter(cn_exp, cn==6)[,"log2FoldChange"],filter(cn_exp, cn==7)[,"log2FoldChange"]) # p-value = 0.2273
+	wilcox.test(filter(cn_exp, cn==7)[,"log2FoldChange"],filter(cn_exp, cn=="8plus")[,"log2FoldChange"]) # p-value = 0.03343
+
+	# t.test(filter(cn_exp, cn==1)[,"log2FoldChange"],)
 
 #########################################################################################################
 # Steamer
@@ -329,19 +353,20 @@ dev.off()
 #### NEW boxplot of LFC based on steamer insertion status
 
 pdf(paste0(output_folder,"/plots/steamer_exp_plot.pdf"))
-    ggplot(steamer_ins, aes(inserted2, -u_lfc, fill = USA)) +
+    steamer_plot <- ggplot(steamer_ins, aes(inserted2, -u_lfc, fill = USA)) +
         geom_hline(yintercept = 0) +  
         geom_boxplot(outlier.shape = NA) +
 	geom_point(aes(fill = USA), position = position_jitterdodge(jitter.width = 0.2)) +
         ylim(-12,12) +
 	#scale_fill_manual(values = c("green","orange")) +
-        ylab("log2(foldchange) in BTN vs hemocytes")+
+        ylab("Log2 Fold Change\n(BTN vs hemocytes)")+
 	xlab("Steamer insertion location")+
             theme_classic() +
             theme(axis.text=element_text(size=12,face="bold"),
                     axis.title=element_text(size=16,face="bold"),
                     text=element_text(size=18,face="bold"),
                     legend.title = element_blank())
+	print(steamer_plot)
 dev.off()
 
 wilcox.test(filter(steamer_ins, inserted=="2kbup", USA=="Insertion present")[,"u_lfc"],filter(steamer_ins, inserted=="2kbup", USA=="Control")[,"u_lfc"]) # p-value = 0.0384
@@ -349,3 +374,11 @@ wilcox.test(filter(steamer_ins, inserted=="2kbup", USA=="Insertion present")[,"u
 
 wilcox.test(filter(steamer_ins, inserted=="genes", USA=="Insertion present")[,"u_lfc"],filter(steamer_ins, inserted=="genes", USA=="Control")[,"u_lfc"]) # p-value = 0.2679
 wilcox.test(filter(steamer_ins, inserted=="genes", USA=="Insertion present")[,"u_lfc"],) # p-value = 0.1512
+
+# Plot all three in single plot (that is proportional)
+
+steamer_plot2 <- steamer_plot + theme(legend.position="top")
+
+fig2 <- grid.arrange(fusion_plot, cn_plot, steamer_plot2, widths = c(0.5, 1, 1), nrow = 1)
+ggsave(paste0(output_folder,"/plots/Fig2_multipanel.pdf"), plot = fig2, width = 12, height = 4, units = "in")
+ggsave(paste0(output_folder,"/plots/Fig2_multipanel.svg"), plot = fig2, width = 12, height = 4, units = "in", fix_text_size = FALSE)

@@ -185,3 +185,19 @@ pdf("supplementary_pca-hc.pdf")
             main = "BTN and ASW-BTN and hemocytes, all genes"
             )
 dev.off()
+
+# Figure 3
+
+        deseq_vsd <- vst(deseq_asw_btn_heme) # Just ASW and BTN and heme
+        fig3 <- plotPCA(deseq_vsd, intgroup = c("tissue")) +
+        	theme_classic() +
+		theme(legend.position="none") +
+        	theme(
+            		aspect.ratio = 1,
+            		plot.title = element_text(hjust = 0.5),
+            		axis.text = element_text(size = 14, face = "bold"),
+            		axis.title = element_text(size = 16, face = "bold"),
+            		text = element_text(size = 16, face = "bold")
+        	)
+ggsave("Fig3.pdf", plot = fig3, width = 4, height = 4, units = "in")
+ggsave("Fig3.svg", plot = fig3, width = 4, height = 4, units = "in", fix_text_size = FALSE)

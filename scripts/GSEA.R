@@ -104,7 +104,8 @@
         gsea_result <- fgseaMultilevel(pathways = gene_set_list,
                                        stats = ranking)
                                        #nproc = 1) # Changed to try and address issue running for heme_BTN
-        gsea_result <- left_join(gsea_result, gs_to_go)
+        gsea_result <- left_join(gsea_result, gs_to_go) %>%
+		filter(!str_detect(go_code, "^HP"))
     # print top100 lists
         filter(gsea_result, NES > 0, padj < 0.05) %>%
             arrange(padj) %>%
@@ -217,10 +218,15 @@ comparison <- "ASW_vs_BTN_minus_heme_hits"
             head(n=100) %>%
             write.table("top100_genes_dnreg_in_ASW_vs_BTN_plusheme.tsv",
                         sep="\t", row.names = FALSE, quote = FALSE)
+        asw_treatments %>%
+            arrange(padj)%>%
+            write.table("ASW_treatment_all_genes_results.tsv",
+                        sep="\t", row.names = FALSE, quote = FALSE)
+
     #gene sets
     heme_asw2 <- heme_vs_ASWheme_GSEA %>%
             mutate(heme_ES = -ES) %>% # since heme-hemeASW comparison is flipped
-            select(pathway, heme_ES, heme_padj = padj) 
+            dplyr::select(pathway, heme_ES, heme_padj = padj) 
 
     asw_output <- left_join(ASW_BTN_GSEA, heme_asw2) %>% 
             arrange(padj) %>%
@@ -236,6 +242,11 @@ comparison <- "ASW_vs_BTN_minus_heme_hits"
             head(n=100) %>%
             write.table("top100_genesets_dnreg_in_ASW_vs_BTN_plusheme.tsv",
                         sep="\t", row.names = FALSE, quote = FALSE)
+        asw_output %>%
+            arrange(padj)%>%
+            write.table("ASW_treatment_all_genesets_results.tsv",
+                        sep="\t", row.names = FALSE, quote = FALSE)
+
 
 # Compare to mussel results and print top 100
     mussel <- read.delim("./inputs/burioli_mussel_genes.txt",
