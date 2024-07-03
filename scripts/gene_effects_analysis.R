@@ -270,6 +270,15 @@ dev.off()
 	wilcox.test(filter(cn_exp, cn==6)[,"log2FoldChange"],filter(cn_exp, cn==7)[,"log2FoldChange"]) # p-value = 0.2273
 	wilcox.test(filter(cn_exp, cn==7)[,"log2FoldChange"],filter(cn_exp, cn=="8plus")[,"log2FoldChange"]) # p-value = 0.03343
 
+	filter(cn_exp, cn==1) %>% nrow()
+	filter(cn_exp, cn==2) %>% nrow()
+	filter(cn_exp, cn==3) %>% nrow()
+	filter(cn_exp, cn==4) %>% nrow()
+	filter(cn_exp, cn==5) %>% nrow()
+	filter(cn_exp, cn==6) %>% nrow()
+	filter(cn_exp, cn==7) %>% nrow()
+	filter(cn_exp, cn=="8plus") %>% nrow()
+
 	# t.test(filter(cn_exp, cn==1)[,"log2FoldChange"],)
 
 #########################################################################################################
@@ -374,6 +383,8 @@ wilcox.test(filter(steamer_ins, inserted=="2kbup", USA=="Insertion present")[,"u
 
 wilcox.test(filter(steamer_ins, inserted=="genes", USA=="Insertion present")[,"u_lfc"],filter(steamer_ins, inserted=="genes", USA=="Control")[,"u_lfc"]) # p-value = 0.2679
 wilcox.test(filter(steamer_ins, inserted=="genes", USA=="Insertion present")[,"u_lfc"],) # p-value = 0.1512
+
+group_by(steamer_ins,inserted,USA) %>% tally()
 
 # Plot all three in single plot (that is proportional)
 
