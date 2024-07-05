@@ -380,9 +380,11 @@ dev.off()
 
 wilcox.test(filter(steamer_ins, inserted=="2kbup", USA=="Insertion present")[,"u_lfc"],filter(steamer_ins, inserted=="2kbup", USA=="Control")[,"u_lfc"]) # p-value = 0.0384
 wilcox.test(filter(steamer_ins, inserted=="2kbup", USA=="Insertion present")[,"u_lfc"],) # p-value = 0.003444
+wilcox.test(filter(steamer_ins, inserted=="2kbup", USA=="Control")[,"u_lfc"],) # p-value = 0.3591
 
 wilcox.test(filter(steamer_ins, inserted=="genes", USA=="Insertion present")[,"u_lfc"],filter(steamer_ins, inserted=="genes", USA=="Control")[,"u_lfc"]) # p-value = 0.2679
 wilcox.test(filter(steamer_ins, inserted=="genes", USA=="Insertion present")[,"u_lfc"],) # p-value = 0.1512
+wilcox.test(filter(steamer_ins, inserted=="genes", USA=="Control")[,"u_lfc"],) # p-value = 0.08149
 
 group_by(steamer_ins,inserted,USA) %>% tally()
 
