@@ -9,13 +9,14 @@
     module load sratools # version 2.10.4
 
     #test download (for timing)
-        cd $INPUT_FOLDER/fastq
-        fasterq-dump SRR23856978
-        gzip SRR23856978_1.fastq &
-        gzip SRR23856978_2.fastq &
-        wait
+        # cd $INPUT_FOLDER/fastq
+        # fasterq-dump SRR23856993
+        # gzip SRR23856993_1.fastq &
+        # gzip SRR23856993_2.fastq &
+        # wait
 
-    # Full download (takes about an hour each  - will take about 28hr)
+    # Full download (takes about an hour each  - will take about 40hr)
+	# ASW treatments are archived under same accession number as pre-treatment
         cd $INPUT_FOLDER/fastq
         ACCESSIONS="SRR22741477
             SRR22741478
@@ -40,7 +41,10 @@
             SRR23856992
             SRR23856993
             SRR23856994
-            SRR23856995"
+            SRR23856995
+            SRR30420898
+            SRR30420899
+            SRR30420900"
         TOTAL=$(printf '%s\n' $ACCESSIONS:q | wc -w)
         COUNT=0
         for ACCESSION in $ACCESSIONS
@@ -54,7 +58,3 @@
             echo $COUNT complete out of $TOTAL
         done
         wait
-
-########################################################
-# Note that this does not yet incluse ASW or PEI samples
-########################################################
