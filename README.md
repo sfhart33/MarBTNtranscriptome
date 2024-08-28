@@ -1,6 +1,8 @@
 # MarBTNtranscriptome
 ## Code to accompany manuscript on gene expression of soft-shell clam (*Mya arenaria*) bivalve transmissible neoplasia (MarBTN) 
+
 *Gene expression in soft-shell clam (*Mya arenaria*) transmissible cancer reveals survival mechanisms during host infection and seawater transfer* 
+
 Samuel Hart, University of Washington Molecular and Cellular Biology PhD program, *sfhart33@gmail.com*
 
 <br/>
