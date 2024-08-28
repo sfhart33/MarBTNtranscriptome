@@ -40,6 +40,8 @@ Requires [sratools](https://github.com/ncbi/sra-tools/wiki)
 
 Each fastq file may take ~1hr to download - expect to run for a day or two
 
+*To run downstream scripts, use NCBI SRA metafiles to rename SRA fastq files (e.g. SRR23856981_1.fastq.gz) to the original name (e.g. 01-FFM-28E5_R1_001.fastq.gz). Or email sfhart33@gmail.com: I plan to incorperate a translation script but have not yet done so.*
+
 ```
 # Download git repo
 	git clone https://github.com/sfhart33/MarBTNtranscriptome.git

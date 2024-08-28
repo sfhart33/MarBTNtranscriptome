@@ -16,7 +16,7 @@
         # wait
 
     # Full download (takes about an hour each  - will take about 40hr)
-	# ASW treatments are archived under same accession number as pre-treatment
+	# Note - for last three samples ASW treatments are archived under same accession number as pre-treatment _3 and _4
         cd $INPUT_FOLDER/fastq
         ACCESSIONS="SRR22741477
             SRR22741478
@@ -42,6 +42,9 @@
             SRR23856993
             SRR23856994
             SRR23856995
+            SRR30420993
+            SRR30420994
+            SRR30420995
             SRR30420898
             SRR30420899
             SRR30420900"
@@ -55,6 +58,8 @@
             echo Zipping $ACCESSION
             gzip $ACCESSION"_1.fastq" &
             gzip $ACCESSION"_2.fastq" &
+            gzip $ACCESSION"_3.fastq" & # only exists for last three
+            gzip $ACCESSION"_4.fastq" & # only exists for last three
             echo $COUNT complete out of $TOTAL
         done
         wait
