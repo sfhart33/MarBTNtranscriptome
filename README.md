@@ -103,5 +103,6 @@ notes in ./scripts/mt_snvs.txt
 * Use STAR to align RNA reads to mt genome
 * Checked manually in IGV for SNPs
 * Compare to USA/PEI SNPS FROM GENOME PAPER
-  * /ssd3/Mar_genome_analysis/bwa_mapping/mito/all_samples/somatypus/Somatypus_SNVs_final.counts
+  * External: https://github.com/sfhart33/MarBTNgenome/tree/main/06_Mito_analysis
+  * Internal Metzger lab: /ssd3/Mar_genome_analysis/bwa_mapping/mito/all_samples/somatypus/Somatypus_SNVs_final.counts
 * Use SNP ratios as rough proxy for purity too
