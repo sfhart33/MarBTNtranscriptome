@@ -7,7 +7,7 @@ Samuel Hart, University of Washington Molecular and Cellular Biology PhD program
 
 Follow the steps below to recreate the data analysis from the [Metzger lab](https://pnri.org/metzger-lab/)'s publication on the transcriptomics of transmissible cancer in soft-shell clams. If you use any of these methods or data for your own research, please use the following citation:
 
-* Hart S., Garrett F., Kerr J., Metzger M. (2024). [*Gene expression in soft-shell clam (Mya arenaria) transmissible cancer reveals survival mechanisms during host infection and seawater transfer*](https://www.biorxiv.org/content/10.1101/2024.09.13.612964v1). bioRxiv.
+Hart S., Garrett F., Kerr J., Metzger M. (2024). [*Gene expression in soft-shell clam (Mya arenaria) transmissible cancer reveals survival mechanisms during host infection and seawater transfer*](https://www.biorxiv.org/content/10.1101/2024.09.13.612964v1). bioRxiv.
 
 <br/><br/>
 
