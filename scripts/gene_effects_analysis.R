@@ -395,3 +395,56 @@ steamer_plot2 <- steamer_plot + theme(legend.position="top")
 fig2 <- grid.arrange(fusion_plot, cn_plot, steamer_plot2, widths = c(0.5, 1, 1), nrow = 1)
 ggsave(paste0(output_folder,"/plots/Fig2_multipanel.pdf"), plot = fig2, width = 12, height = 4, units = "in")
 ggsave(paste0(output_folder,"/plots/Fig2_multipanel.svg"), plot = fig2, width = 12, height = 4, units = "in", fix_text_size = FALSE)
+
+######### REVISIONS ###########
+# look at effect of fusions, CN, and steamer on indiv genes
+      load(paste0(output_folder,"/data_tables/asw_vs_btn_results.rda")) # ASW_BTN: negative is higher in ASW
+
+fusion_gene_name_list <- c(as.character(cancer_shared_nohealthy_df$LeftGene), as.character(cancer_shared_nohealthy_df$RightGene))
+
+    usa_calls <- paste0(home_dir,"/inputs/genes_by_USA_copy_number.tsv") %>%
+        read.delim(header = FALSE, col.names = c("scaf", "start", "end", "mya_gene", "cn")) %>%
+        separate(mya_gene, into = c(NA, "gene"), sep = "gene-", ) %>%
+        select(gene, cn) #%>%
+        #filter(cn != 0)
+    cn_exp <- as.data.frame(heme_BTN) %>%
+        rownames_to_column(var = "gene") %>%
+        filter(baseMean > 1) %>%
+        select(gene, log2FoldChange) %>%
+        inner_join(usa_calls) %>%
+        mutate(sublin = "USA")
+cn_gene_low <- filter(cn_exp, cn %in% c(0,1)) %>% pull(gene)
+cn_gene_high <- filter(cn_exp, cn %in% c(6,7,"8plus")) %>% pull(gene)
+
+steamer_gene_list <- filter(steamer_ins, USA == "Insertion present", inserted2 == "Within 2kB upstream") %>% pull(gene)
+steamer_gene_list2 <- filter(steamer_ins, USA == "Insertion present", inserted2 == "In gene region") %>% pull(gene)
+
+plot_function <- function(comparison, set, name, comp_name){
+      plot1 <- as.data.frame(comparison) %>%
+            ggplot(aes(x = -log2FoldChange, y = -log10(padj))) +
+                geom_point(color = "grey") +
+                geom_point(data = as.data.frame(comparison)[set,], aes(x = -log2FoldChange, y = -log10(padj))) +
+                geom_hline(yintercept =-log10(0.05)) +
+		ggtitle(name) +
+                xlab(paste0("Log2 Fold Change (<-",comp_name,"->)")) +
+                ylab("-Log10 adj p-value") +
+                theme_classic() +
+                theme(
+                    aspect.ratio = 0.5,
+                    plot.title = element_text(hjust = 0.5),
+                    axis.text = element_text(size = 14, face = "bold"),
+                    axis.title = element_text(size = 16, face = "bold"),
+                    text = element_text(size = 16, face = "bold"),
+                    legend.title = element_text("none")
+                )
+	print(plot1)
+	print(comp_name)
+}
+pdf(paste0(output_folder,"/plots/cn-steamer-fusion_exp_effects.pdf"))
+	plot_function(heme_BTN, cn_gene_high, "Copy number >5", "hemocytes vs BTN")
+	plot_function(heme_BTN, cn_gene_low, "Copy number <2", "hemocytes vs BTN")
+	plot_function(heme_BTN, steamer_gene_list, "Steamer insertion upstream", "hemocytes vs BTN")
+	plot_function(heme_BTN, fusion_gene_name_list, "Fusion gene", "hemocytes vs BTN")
+	plot_function(ASW_BTN, steamer_gene_list, "Steamer insertion upstream", "untreated BTN vs ASW-BTN")
+	plot_function(ASW_BTN, fusion_gene_name_list, "Fusion gene", "untreated BTN vs ASW-BTN")
+dev.off()

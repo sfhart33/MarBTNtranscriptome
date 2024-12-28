@@ -174,14 +174,38 @@ pdf("supplementary_pca-hc.pdf")
             annotation_col = annotations,
             main = "BTN and ASW-BTN and hemocytes, tissue-specific genes"
             )
-        rnaseq_norm[,include] %>% 
+
+        rnaseq_norm[rnaseq_norm,include] %>% 
             pheatmap(
-            cluster_rows = FALSE,
+            cluster_rows = TRUE,
             show_rownames = FALSE,
             cluster_cols = TRUE,
             clustering_distance_cols = "canberra",
             scale = "row",
             annotation_col = annotations,
+            main = "BTN and ASW-BTN and hemocytes, all genes"
+            )
+dev.off()
+pdf("supp_fig4.pdf")
+	order <- arrange(rnaseq_norm[(rowSums(rnaseq_norm[,include])> 0),],
+				desc(HEL_1_heme)) %>%
+				#desc(HEL_1_heme + HEL_2_heme + HEL_3_heme + HEL_4_heme + HEL_5_heme + HEL_6_heme + HEL_7_heme + HEL_8_heme)) %>%
+		rownames()
+	sub_anno <- structure(list(seq_share = order), .Names = "seq_share", row.names = order, class = "data.frame")
+        annotations2 <- annotations
+	levels(annotations2$tissue) <- c(levels(annotations2$tissue), "BTN-ASW")
+	annotations2$tissue[annotations2$tissue == 'ASW'] <- 'BTN-ASW'
+		#annotations2
+
+	rnaseq_norm[order,include] %>% 
+            pheatmap(
+            cluster_rows = TRUE,
+            show_rownames = FALSE,
+            cluster_cols = TRUE,
+            clustering_distance_cols = "canberra",
+            scale = "row",
+            annotation_col = annotations2,
+            #annotation_row = sub_anno,
             main = "BTN and ASW-BTN and hemocytes, all genes"
             )
 dev.off()

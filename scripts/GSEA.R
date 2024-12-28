@@ -269,3 +269,20 @@ comparison <- "ASW_vs_BTN_minus_heme_hits"
         head(100) %>%
             write.table(paste0(output_folder,"/plots/top_genes_both_mussels_mya2.tsv"),
                         sep="\t", row.names = FALSE, quote = FALSE)
+
+################# REVISIONS
+# compare to inborn errors of immunity
+
+gene_reg_data <- as.data.frame(heme_BTN) %>%
+            rownames_to_column(var = "gene") %>%
+            left_join(gene_translations) %>%
+            left_join(uniprot_translations) %>%
+            dplyr::select(gene, uniprot, padj, baseMean,
+                          stat, log2FoldChange, description) 
+inborn_immunity_genes <- read.delim(paste0(input_folder,"/IUIS-IEI-list-for-web-site-July-2024V2.txt"),
+                         sep = "\t",
+                         head = TRUE) %>%
+		pull(Genetic.defect)
+pdf(paste0(output_folder,"/plots/inborn_immunity_genes.pdf"))
+
+dev.off()
