@@ -284,5 +284,29 @@ inborn_immunity_genes <- read.delim(paste0(input_folder,"/IUIS-IEI-list-for-web-
                          head = TRUE) %>%
 		pull(Genetic.defect)
 pdf(paste0(output_folder,"/plots/inborn_immunity_genes.pdf"))
-
+	as.data.frame(heme_BTN) %>%
+            ggplot(aes(x = -log2FoldChange, y = -log10(padj))) +
+                geom_point(color = "grey") +
+                geom_point(data =  filter(gene_reg_data, uniprot %in% inborn_immunity_genes),
+			aes(x = -log2FoldChange, y = -log10(padj))) +
+                geom_hline(yintercept =-log10(0.05)) +
+		ggtitle("Inborn errors of imunity genes") +
+                xlab("Log2 Fold Change (<-hemocytes vs BTN->)") +
+                ylab("-Log10 adj p-value") +
+                theme_classic() +
+                theme(
+                    aspect.ratio = 0.5,
+                    plot.title = element_text(hjust = 0.5),
+                    axis.text = element_text(size = 14, face = "bold"),
+                    axis.title = element_text(size = 16, face = "bold"),
+                    text = element_text(size = 16, face = "bold"),
+                    legend.title = element_text("none")
+                )
+	filter(gene_reg_data, uniprot %in% inborn_immunity_genes) %>%
+		ggplot(aes(x = -log2FoldChange)) +
+			geom_histogram()
 dev.off()
+filter(gene_reg_data, uniprot %in% inborn_immunity_genes, padj < 0.05, log2FoldChange < 0) %>% nrow()
+filter(gene_reg_data, uniprot %in% inborn_immunity_genes, padj < 0.05, log2FoldChange > 0) %>% nrow()
+wilcox.test(pull(filter(gene_reg_data, uniprot %in% inborn_immunity_genes),log2FoldChange),) # p-value = 1.463e-09
+t.test(pull(filter(gene_reg_data, uniprot %in% inborn_immunity_genes),log2FoldChange),) # p-value = 8.068e-09

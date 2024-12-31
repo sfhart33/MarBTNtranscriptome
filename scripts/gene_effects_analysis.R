@@ -152,11 +152,11 @@
         sep="\t", header = FALSE, col.names = c("LeftGene","LeftGene_desc"), quote = "")
     gene_names2 <- read.table(paste0(input_folder,"/GCF_026914265.1_ASM2691426v1/gene_translation.txt"),
         sep="\t", header = FALSE, col.names = c("RightGene","RightGene_desc"), quote = "")
-    fusion_gene_list <- select(cancer_shared_nohealthy_df, LeftGene, RightGene) %>%
+    fusion_gene_list <- select(cancer_shared_nohealthy_df, LeftGene, RightGene, LeftBreakpoint, RightBreakpoint) %>%
         left_join(gene_names1) %>%
         left_join(gene_names2)
     #fusion_gene_list %>% head()
-    write.table(fusion_gene_list, "fusion_genes_list.txt", row.names = TRUE, col.names = FALSE, quote = FALSE, sep = "\t")
+    write.table(fusion_gene_list, "fusion_genes_list.txt", row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t")
 
 # Check for kinases
     filter(fusion_gene_list, grepl("kinase",RightGene_desc) | grepl("kinase",LeftGene_desc)) # 8 kinases out of 258 unique genes involved in fusions = 3.1%
@@ -448,3 +448,15 @@ pdf(paste0(output_folder,"/plots/cn-steamer-fusion_exp_effects.pdf"))
 	plot_function(ASW_BTN, steamer_gene_list, "Steamer insertion upstream", "untreated BTN vs ASW-BTN")
 	plot_function(ASW_BTN, fusion_gene_name_list, "Fusion gene", "untreated BTN vs ASW-BTN")
 dev.off()
+
+
+as.data.frame(heme_BTN)[fusion_gene_name_list,] %>% arrange(padj) %>% head() # LOC128204083
+as.data.frame(ASW_BTN)[fusion_gene_name_list,] %>% arrange(padj) %>% head() # LOC128219956
+filter(cancer_shared_nohealthy_df, LeftGene %in% c("LOC128204083","LOC128219956"))
+	# 1 LOC128204083 LOC128213552 NC_069131.1:68398164:+ NC_069134.1:17993030:+
+	# 2 LOC128219956 LOC128224797 NC_069136.1:30046056:- NC_069138.1:16879873:+
+	# grep "LOC128204083" /ssd3/RNAseq/inputs/GCF_026914265.1_ASM2691426v1/ref_annot.gtf # 7 annotations
+	# grep "LOC128213552" /ssd3/RNAseq/inputs/GCF_026914265.1_ASM2691426v1/ref_annot.gtf # 456 annotations
+	# grep "LOC128219956" /ssd3/RNAseq/inputs/GCF_026914265.1_ASM2691426v1/ref_annot.gtf # 375 annotations
+	# grep "LOC128224797" /ssd3/RNAseq/inputs/GCF_026914265.1_ASM2691426v1/ref_annot.gtf # 41
+	# grep "LOC128219956" /ssd3/RNAseq/inputs/GCF_026914265.1_ASM2691426v1/ref_annot.gtf | awk '$3 == "CDS" && $5 < 30046056 {print}' | wc -l # 99 CDS
