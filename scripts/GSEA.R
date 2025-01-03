@@ -310,3 +310,16 @@ filter(gene_reg_data, uniprot %in% inborn_immunity_genes, padj < 0.05, log2FoldC
 filter(gene_reg_data, uniprot %in% inborn_immunity_genes, padj < 0.05, log2FoldChange > 0) %>% nrow()
 wilcox.test(pull(filter(gene_reg_data, uniprot %in% inborn_immunity_genes),log2FoldChange),) # p-value = 1.463e-09
 t.test(pull(filter(gene_reg_data, uniprot %in% inborn_immunity_genes),log2FoldChange),) # p-value = 8.068e-09
+
+# list of gene sets
+
+# genesets <- read.delim("genesets.tsv") %>%
+	
+# genesets %>%
+# 	rename("ID" = "gene_set", "geneName" = "gene") %>%
+# 	left_join(gene_translations) %>%
+# 	left_join(uniprot_translations) %>%
+# 	filter(!str_detect(gene_set, "^HP")) %>%
+#            write.table("genesets.annotated.tsv",
+#                        sep="\t", row.names = FALSE, quote = FALSE)		
+
